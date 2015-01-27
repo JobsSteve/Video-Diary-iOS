@@ -16,5 +16,6 @@
 
 + (instancetype)sharedStore;
 - (Video *)createVideo;
+- (void)removeVideo:(Video *)video;
 
 @end

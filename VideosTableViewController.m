@@ -12,18 +12,33 @@
 
 @interface VideosTableViewController ()
 
+@property (nonatomic, strong) IBOutlet UIView *headerView;
+
 @end
 
 @implementation VideosTableViewController
+
+- (UIView *)headerView
+{
+    // If you have not already loaded the headerView yet...
+    if (!_headerView) {
+        
+        // Load HeaderView.xib
+        [[NSBundle mainBundle] loadNibNamed:@"HeaderView"
+                                      owner:self
+                                    options:nil];
+    }
+    return _headerView;
+}
+
+#pragma mark - Initializers
 
 // Designated initializer
 - (instancetype)init
 {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
-        for (int i = 0; i < 5; i++) {
-            [[VideoStore sharedStore] createVideo];
-        }
+        
     }
     return self;
 }
@@ -32,6 +47,8 @@
 {
     return [self init];
 }
+
+#pragma mark - App lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,6 +61,9 @@
     
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:@"UITableViewCell"];
+    
+    UIView *header = self.headerView;
+    [self.tableView setTableHeaderView:header];
     
     self.tableView.rowHeight = 100.0;
 }
@@ -91,17 +111,21 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        // Delete selected video from VideoStore
+        NSArray *videos = [[VideoStore sharedStore] allVideos];
+        Video *video = videos[indexPath.row];
+        [[VideoStore sharedStore] removeVideo:video];
+        
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -126,5 +150,40 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - IBAction methods
+
+- (IBAction)addNewItem:(id)sender
+{
+    Video *newVideo = [[VideoStore sharedStore] createVideo];
+    
+    // Where is that video in the array?
+    NSInteger firstRow = [[[VideoStore sharedStore] allVideos] indexOfObject:newVideo];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:firstRow inSection:0];
+    
+    // Insert this new row into the table
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+}
+
+- (IBAction)toggleEditingMode:(id)sender
+{
+    // If you are currently in editing mode...
+    if (self.isEditing) {
+        
+        // Change text of button to inform user of state
+        [sender setTitle:@"Edit" forState:UIControlStateNormal];
+        
+        // Turn off editing mode
+        [self setEditing:NO animated:YES];
+    } else {
+        
+        // Change text of button to inform user of state
+        [sender setTitle:@"Done" forState:UIControlStateNormal];
+        
+        // Enter editing mode
+        [self setEditing:YES animated:YES];
+    }
+}
 
 @end

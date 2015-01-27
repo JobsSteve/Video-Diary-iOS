@@ -53,8 +53,13 @@
 - (Video *)createVideo
 {
     Video *video = [[Video alloc] init];
-    [self.privateVideos addObject:video];
+    [self.privateVideos insertObject:video atIndex:0];
     return video;
+}
+
+- (void)removeVideo:(Video *)video
+{
+    [self.privateVideos removeObjectIdenticalTo:video];
 }
 
 
