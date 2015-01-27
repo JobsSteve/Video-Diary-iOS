@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "VideosTableViewController.h"
 
 @interface AppDelegate ()
 
@@ -15,8 +16,17 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    VideosTableViewController *videosTableViewController = [[VideosTableViewController alloc] init];
+    
+    self.window.rootViewController = videosTableViewController;
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

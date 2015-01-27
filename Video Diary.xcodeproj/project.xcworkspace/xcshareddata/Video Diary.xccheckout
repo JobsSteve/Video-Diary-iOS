@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>86B7D292-0789-4092-AD0F-66FD00254AF4</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Video Diary</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>12645B170D1A51AA8A310140B873273FB2FD9608</key>
+		<string>https://github.com/fiixed/Video-Diary-iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Video Diary.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>12645B170D1A51AA8A310140B873273FB2FD9608</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/fiixed/Video-Diary-iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>12645B170D1A51AA8A310140B873273FB2FD9608</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>12645B170D1A51AA8A310140B873273FB2FD9608</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Video%20Diary</string>
+		</dict>
+	</array>
+</dict>
+</plist>
