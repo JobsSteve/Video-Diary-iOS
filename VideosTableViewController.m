@@ -7,6 +7,8 @@
 //
 
 #import "VideosTableViewController.h"
+
+#import "DetailViewController.h"
 #import "VideoStore.h"
 #import "Video.h"
 
@@ -68,6 +70,13 @@
     self.tableView.rowHeight = 100.0;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -84,20 +93,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+//    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCell"];
+
+    
     
     // Configure the cell...
     NSArray *videos = [[VideoStore sharedStore] allVideos];
     Video *video = videos[indexPath.row];
     
-    NSDateFormatter *formatter;
-    NSString        *dateString;
+    // Use NSDateFormatter to turn a date into a date string
+    static NSDateFormatter *dateFormatter;
+    if (!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateStyle = NSDateIntervalFormatterMediumStyle;
+        dateFormatter.timeStyle = NSDateFormatterShortStyle;
+    }
     
-    formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM-dd-yyyy HH:mm"];
-    
-    dateString = [formatter stringFromDate:[video dateCreated]];
-    
-    cell.textLabel.text = dateString;
+    cell.textLabel.text = [dateFormatter stringFromDate:[video dateCreated]];
     
     return cell;
 }
@@ -140,6 +152,22 @@
     return YES;
 }
 */
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DetailViewController *detailViewController = [[DetailViewController alloc] init];
+    
+    NSArray *videos = [[VideoStore sharedStore] allVideos];
+    Video *selectedVideo = videos[indexPath.row];
+    
+    // Give detail view controller a pointer to the video object in row
+    detailViewController.video = selectedVideo;
+    
+    // Push it onto the top of the navigation controller's stack
+    [self.navigationController pushViewController:detailViewController animated:YES];
+}
 
 /*
 #pragma mark - Navigation

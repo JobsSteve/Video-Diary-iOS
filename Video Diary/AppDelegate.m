@@ -23,7 +23,11 @@
     
     VideosTableViewController *videosTableViewController = [[VideosTableViewController alloc] init];
     
-    self.window.rootViewController = videosTableViewController;
+    // Create an instance of UINavigationController; its stack contains only VideosTableViewController
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:videosTableViewController];
+    
+    // Place navControllers view in the window hierachy
+    self.window.rootViewController = navController;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
