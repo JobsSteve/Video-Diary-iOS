@@ -11,12 +11,26 @@
 
 @interface DetailViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITextView *commentTextView;
 
 @end
 
 @implementation DetailViewController
+
+static NSDateFormatter *dateFormatter;
+
+- (void)setVideo:(Video *)video
+{
+    _video = video;
+    
+    // Use NSDateFormatter to turn a date into a date string
+    if (!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateStyle = NSDateIntervalFormatterMediumStyle;
+        dateFormatter.timeStyle = NSDateFormatterShortStyle;
+    }
+    self.navigationItem.title = [dateFormatter stringFromDate:video.dateCreated];
+}
 
 #pragma mark - App lifecycle
 
@@ -30,17 +44,6 @@
     [super viewWillAppear:animated];
     
     Video *video = self.video;
-    
-    // Use NSDateFormatter to turn a date into a date string
-    static NSDateFormatter *dateFormatter;
-    if (!dateFormatter) {
-        dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateStyle = NSDateIntervalFormatterMediumStyle;
-        dateFormatter.timeStyle = NSDateFormatterShortStyle;
-    }
-    
-    // Use filtered NSDate object to set dateLabel contents
-    self.dateLabel.text = [dateFormatter stringFromDate:video.dateCreated];
     
     self.commentTextView.text = video.comment;
 }
@@ -61,5 +64,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 @end

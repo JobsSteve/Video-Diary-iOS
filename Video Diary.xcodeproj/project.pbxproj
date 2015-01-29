@@ -16,7 +16,6 @@
 		0572BBB71A7713C600720A2C /* VideosTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0572BBB61A7713C600720A2C /* VideosTableViewController.m */; };
 		0572BBBA1A7715B200720A2C /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 0572BBB91A7715B200720A2C /* Video.m */; };
 		0572BBBE1A77185100720A2C /* VideoStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0572BBBD1A77185100720A2C /* VideoStore.m */; };
-		0572BBC01A78341300720A2C /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0572BBBF1A78341300720A2C /* HeaderView.xib */; };
 		0572BBC41A78532B00720A2C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0572BBC21A78532B00720A2C /* DetailViewController.m */; };
 		0572BBC51A78532B00720A2C /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0572BBC31A78532B00720A2C /* DetailViewController.xib */; };
 /* End PBXBuildFile section */
@@ -49,7 +48,6 @@
 		0572BBB91A7715B200720A2C /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
 		0572BBBC1A77185100720A2C /* VideoStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoStore.h; sourceTree = "<group>"; };
 		0572BBBD1A77185100720A2C /* VideoStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoStore.m; sourceTree = "<group>"; };
-		0572BBBF1A78341300720A2C /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		0572BBC11A78532B00720A2C /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		0572BBC21A78532B00720A2C /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		0572BBC31A78532B00720A2C /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 				0572BBC11A78532B00720A2C /* DetailViewController.h */,
 				0572BBC21A78532B00720A2C /* DetailViewController.m */,
 				0572BBC31A78532B00720A2C /* DetailViewController.xib */,
-				0572BBBF1A78341300720A2C /* HeaderView.xib */,
 				0572BBBB1A7715B800720A2C /* Model */,
 				0572BB9C1A77129200720A2C /* Images.xcassets */,
 				0572BB9E1A77129200720A2C /* LaunchScreen.xib */,
@@ -228,7 +225,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0572BBC01A78341300720A2C /* HeaderView.xib in Resources */,
 				0572BBA01A77129200720A2C /* LaunchScreen.xib in Resources */,
 				0572BB9D1A77129200720A2C /* Images.xcassets in Resources */,
 				0572BBC51A78532B00720A2C /* DetailViewController.xib in Resources */,
@@ -438,6 +434,7 @@
 				0572BBB11A77129300720A2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0572BBB21A77129300720A2C /* Build configuration list for PBXNativeTarget "Video DiaryTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +443,7 @@
 				0572BBB41A77129300720A2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

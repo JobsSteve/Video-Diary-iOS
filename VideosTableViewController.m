@@ -14,24 +14,10 @@
 
 @interface VideosTableViewController ()
 
-@property (nonatomic, strong) IBOutlet UIView *headerView;
 
 @end
 
 @implementation VideosTableViewController
-
-- (UIView *)headerView
-{
-    // If you have not already loaded the headerView yet...
-    if (!_headerView) {
-        
-        // Load HeaderView.xib
-        [[NSBundle mainBundle] loadNibNamed:@"HeaderView"
-                                      owner:self
-                                    options:nil];
-    }
-    return _headerView;
-}
 
 #pragma mark - Initializers
 
@@ -40,7 +26,17 @@
 {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
+        UINavigationItem *navItem = self.navigationItem;
+        navItem.title = @"Video Diary";
         
+        
+        // Bar button item that will send addNewVideo: to VideosTableViewController
+        UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewVideo:)];
+        
+        // Set this bar button item as the right item in the navigationItem
+        navItem.rightBarButtonItem = bbi;
+        
+        navItem.leftBarButtonItem = self.editButtonItem;
     }
     return self;
 }
@@ -63,9 +59,6 @@
     
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:@"UITableViewCell"];
-    
-    UIView *header = self.headerView;
-    [self.tableView setTableHeaderView:header];
     
     self.tableView.rowHeight = 100.0;
 }
@@ -181,7 +174,8 @@
 
 #pragma mark - IBAction methods
 
-- (IBAction)addNewItem:(id)sender
+
+- (IBAction)addNewVideo:(id)sender
 {
     Video *newVideo = [[VideoStore sharedStore] createVideo];
     
@@ -194,24 +188,6 @@
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
 }
 
-- (IBAction)toggleEditingMode:(id)sender
-{
-    // If you are currently in editing mode...
-    if (self.isEditing) {
-        
-        // Change text of button to inform user of state
-        [sender setTitle:@"Edit" forState:UIControlStateNormal];
-        
-        // Turn off editing mode
-        [self setEditing:NO animated:YES];
-    } else {
-        
-        // Change text of button to inform user of state
-        [sender setTitle:@"Done" forState:UIControlStateNormal];
-        
-        // Enter editing mode
-        [self setEditing:YES animated:YES];
-    }
-}
+
 
 @end
