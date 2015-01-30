@@ -23,6 +23,11 @@
         // Set the _dateCreated to the current date and time
         _dateCreated = [[NSDate alloc]init];
         
+        // Create a NSUUID object and get its string representation
+        NSUUID *uuid = [[NSUUID alloc] init];
+        NSString *key = [uuid UUIDString];
+        _fileKey = key;
+        
        
     }
     

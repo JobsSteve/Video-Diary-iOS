@@ -46,12 +46,12 @@
 
 - (void)setFile:(UIImage *)file forKey:(NSString *)key
 {
-    [self.dictionary setObject:file forKey:key];
+    self.dictionary[key] = file;
 }
 
 - (UIImage *)fileForKey:(NSString *)key
 {
-    return [self.dictionary objectForKey:key];
+    return self.dictionary[key];
 }
 
 - (void)deleteFileForKey:(NSString *)key

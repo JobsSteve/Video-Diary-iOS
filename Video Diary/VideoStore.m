@@ -8,6 +8,7 @@
 
 #import "VideoStore.h"
 #import "Video.h"
+#import "FileStore.h"
 
 @interface VideoStore ()
 
@@ -59,6 +60,10 @@
 
 - (void)removeVideo:(Video *)video
 {
+    NSString *key = video.fileKey;
+    
+    [[FileStore sharedStore] deleteFileForKey:key];
+    
     [self.privateVideos removeObjectIdenticalTo:video];
 }
 

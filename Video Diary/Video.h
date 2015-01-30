@@ -12,6 +12,7 @@
 
 @property (nonatomic, copy) NSString *comment;
 @property (nonatomic, readonly, strong) NSDate *dateCreated;
+@property (nonatomic, copy) NSString *fileKey;
 
 // Designated initializer for Video
 -(instancetype)initWithComment:(NSString *)comment;
