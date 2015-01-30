@@ -7,6 +7,7 @@
 //
 
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 #import "DetailViewController.h"
 #import "Video.h"
@@ -15,8 +16,11 @@
 @interface DetailViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *commentTextView;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIView *videoView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+
+@property (strong, nonatomic) MPMoviePlayerController *videoController;
+@property (strong, nonatomic) NSURL *videoURL;
 
 @end
 
@@ -42,6 +46,8 @@ static NSDateFormatter *dateFormatter;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -54,11 +60,11 @@ static NSDateFormatter *dateFormatter;
     
     NSString *fileKey = self.video.fileKey;
     
-    // Get the image for its image key from the image store
-    UIImage *imageToDisplay = [[FileStore sharedStore] fileForKey:fileKey];
-    
-    // Use that image to put on the screen in the imageView
-    self.imageView.image = imageToDisplay;
+//    // Get the image for its image key from the image store
+//    UIImage *imageToDisplay = [[FileStore sharedStore] fileForKey:fileKey];
+//    
+//    // Use that image to put on the screen in the imageView
+//    self.imageView.image = imageToDisplay;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -104,18 +110,26 @@ static NSDateFormatter *dateFormatter;
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    NSURL *mediaURL = info[UIImagePickerControllerMediaURL];
+    self.videoURL = info[UIImagePickerControllerMediaURL];
     
-    if (mediaURL) {
+    if (self.videoURL) {
         // Make sure this device supports videos in its photo album
-        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum([mediaURL path])) {
+        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum([self.videoURL path])) {
             // Save the video to the photos album
-            UISaveVideoAtPathToSavedPhotosAlbum([mediaURL path], nil, nil, nil);
+            UISaveVideoAtPathToSavedPhotosAlbum([self.videoURL path], nil, nil, nil);
             
             // Remove the video from the temporary directory
 //            [[NSFileManager defaultManager] removeItemAtPath:[mediaURL path] error:nil];
         }
     }
+    
+    self.videoController = [[MPMoviePlayerController alloc] init];
+    [self.videoController setContentURL:self.videoURL];
+    [self.videoController.view setFrame:self.videoView.bounds];
+    [self.videoView addSubview: self.videoController.view];
+    
+    [self.videoController prepareToPlay];
+    [self.videoController play];
     
     
     

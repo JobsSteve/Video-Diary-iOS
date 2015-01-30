@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C106a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -7,8 +7,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController">
             <connections>
                 <outlet property="commentTextView" destination="ics-f8-eCd" id="UTQ-QD-ah4"/>
-                <outlet property="imageView" destination="K4q-XI-x1t" id="5g4-bO-9AY"/>
                 <outlet property="toolbar" destination="Lmo-jS-0o6" id="6uZ-pj-FLc"/>
+                <outlet property="videoView" destination="uI8-dc-Dcn" id="kyv-TX-NNd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -27,9 +27,6 @@
                         <outlet property="delegate" destination="-1" id="aRJ-1W-c8a"/>
                     </connections>
                 </textView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K4q-XI-x1t">
-                    <rect key="frame" x="21" y="284" width="369" height="365"/>
-                </imageView>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lmo-jS-0o6">
                     <rect key="frame" x="0.0" y="692" width="414" height="44"/>
                     <items>
@@ -40,6 +37,10 @@
                         </barButtonItem>
                     </items>
                 </toolbar>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uI8-dc-Dcn">
+                    <rect key="frame" x="14" y="282" width="381" height="392"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -48,12 +49,5 @@
                 <action selector="backgroundTapped:" destination="-1" eventType="touchUpInside" id="ReT-de-Aob"/>
             </connections>
         </view>
-        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Syl-bI-aVz">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-            <items>
-                <barButtonItem title="Item" id="md9-a6-Kup"/>
-            </items>
-        </toolbar>
     </objects>
 </document>
