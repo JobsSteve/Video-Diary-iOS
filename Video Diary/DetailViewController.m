@@ -46,7 +46,10 @@ static NSDateFormatter *dateFormatter;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.videoController = [[MPMoviePlayerController alloc] init];
     
+    [self.videoController.view setFrame:self.videoView.bounds];
+    [self.videoView addSubview: self.videoController.view];
     
 }
 
@@ -60,11 +63,17 @@ static NSDateFormatter *dateFormatter;
     
     NSString *fileKey = self.video.fileKey;
     
-//    // Get the image for its image key from the image store
-//    UIImage *imageToDisplay = [[FileStore sharedStore] fileForKey:fileKey];
-//    
-//    // Use that image to put on the screen in the imageView
-//    self.imageView.image = imageToDisplay;
+   // Get the NSString for the video NSURL from the image store
+    NSURL *URL = [[FileStore sharedStore] videoURLForKey:fileKey];
+    
+    self.videoURL = URL;
+
+    if (self.videoURL) {
+        [self.videoController setContentURL:self.videoURL];
+        
+        [self.videoController prepareToPlay];
+    }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -112,39 +121,26 @@ static NSDateFormatter *dateFormatter;
 {
     self.videoURL = info[UIImagePickerControllerMediaURL];
     
-    if (self.videoURL) {
-        // Make sure this device supports videos in its photo album
-        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum([self.videoURL path])) {
-            // Save the video to the photos album
-            UISaveVideoAtPathToSavedPhotosAlbum([self.videoURL path], nil, nil, nil);
-            
-            // Remove the video from the temporary directory
-//            [[NSFileManager defaultManager] removeItemAtPath:[mediaURL path] error:nil];
-        }
-    }
+//    if (self.videoURL) {
+//        // Make sure this device supports videos in its photo album
+//        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum([self.videoURL path])) {
+//            // Save the video to the photos album
+//            UISaveVideoAtPathToSavedPhotosAlbum([self.videoURL path], nil, nil, nil);
+//            
+//            // Remove the video from the temporary directory
+////            [[NSFileManager defaultManager] removeItemAtPath:[mediaURL path] error:nil];
+//        }
+//    }
     
-    self.videoController = [[MPMoviePlayerController alloc] init];
+    
     [self.videoController setContentURL:self.videoURL];
-    [self.videoController.view setFrame:self.videoView.bounds];
-    [self.videoView addSubview: self.videoController.view];
     
     [self.videoController prepareToPlay];
-    [self.videoController play];
+//    [self.videoController play];
     
+    [[FileStore sharedStore] setVideoURL:self.videoURL forKey:self.video.fileKey];
     
-    
-    
-    
-//    // Get picked image from info directory
-//    UIImage *image = info[UIImagePickerControllerOriginalImage];
-//    
-//    // Store the file in the FileStore for this key
-//    [[FileStore sharedStore] setFile:image forKey:self.video.fileKey];
-//    
-//    // Put that image onto the screen in our image view
-//    self.imageView.image = image;
-    
-    // Take the image picker off the screen
+
     [self dismissViewControllerAnimated:YES completion:NULL];
     
 }

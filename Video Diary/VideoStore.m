@@ -67,6 +67,22 @@
     [self.privateVideos removeObjectIdenticalTo:video];
 }
 
+- (NSString *)videoArchivePath
+{
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    // Get the one document directory from the list
+    NSString *documentDirectory = [documentDirectories firstObject];
+    return [documentDirectory stringByAppendingPathComponent:@"videos.archive"];
+}
+
+- (BOOL)saveChanges
+{
+    NSString *path = [self videoArchivePath];
+    
+    // Return YES on success
+    return [NSKeyedArchiver archiveRootObject:self.privateVideos toFile:path];
+}
+
 
 
 @end

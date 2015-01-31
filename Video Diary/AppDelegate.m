@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "VideosTableViewController.h"
+#import "VideoStore.h"
 
 @interface AppDelegate ()
 
@@ -39,9 +40,14 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    BOOL success = [[VideoStore sharedStore] saveChanges];
+    if (success) {
+        NSLog(@"Saved all of the Videos");
+    } else {
+        NSLog(@"Could not save any of the videos");
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

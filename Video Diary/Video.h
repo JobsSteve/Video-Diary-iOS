@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Video : NSObject
+@interface Video : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *comment;
 @property (nonatomic, readonly, strong) NSDate *dateCreated;

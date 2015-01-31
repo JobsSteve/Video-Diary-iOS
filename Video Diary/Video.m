@@ -40,5 +40,24 @@
     return [self initWithComment:@"No Comment"];
 }
 
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.dateCreated forKey:@"dateCreated"];
+    [aCoder encodeObject:self.comment forKey:@"comment"];
+    [aCoder encodeObject:self.fileKey forKey:@"fileKey"];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    
+    if (self) {
+        _dateCreated = [aDecoder decodeObjectForKey:@"dateCreated"];
+        _comment = [aDecoder decodeObjectForKey:@"comment"];
+        _fileKey = [aDecoder decodeObjectForKey:@"fileKey"];
+    }
+    return self;
+}
+
 
 @end

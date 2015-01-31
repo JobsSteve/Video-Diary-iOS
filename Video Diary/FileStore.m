@@ -44,12 +44,12 @@
     return self;
 }
 
-- (void)setFile:(UIImage *)file forKey:(NSString *)key
+- (void)setVideoURL:(NSURL *)url forKey:(NSString *)key
 {
-    self.dictionary[key] = file;
+    self.dictionary[key] = url;
 }
 
-- (UIImage *)fileForKey:(NSString *)key
+- (NSURL *)videoURLForKey:(NSString *)key
 {
     return self.dictionary[key];
 }
