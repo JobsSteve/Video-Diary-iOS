@@ -37,7 +37,7 @@
 
 -(instancetype)init
 {
-    return [self initWithComment:@"No Comment"];
+    return [self initWithComment:@""];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder

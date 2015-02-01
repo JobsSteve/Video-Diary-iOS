@@ -59,7 +59,10 @@ static NSDateFormatter *dateFormatter;
     
     Video *video = self.video;
     
-    self.commentTextView.text = video.comment;
+
+    self.commentTextView.delegate = self;
+    self.commentTextView.text = @"Comment on your diary entry here...";
+    self.commentTextView.textColor = [UIColor lightGrayColor]; //optional
     
     NSString *fileKey = self.video.fileKey;
     
@@ -161,6 +164,24 @@ static NSDateFormatter *dateFormatter;
     }
     
     return YES;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@"Comment on your diary entry here..."]) {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor]; //optional
+    }
+    [textView becomeFirstResponder];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"placeholder text here...";
+        textView.textColor = [UIColor lightGrayColor]; //optional
+    }
+    [textView resignFirstResponder];
 }
 - (IBAction)backgroundTapped:(id)sender
 {
