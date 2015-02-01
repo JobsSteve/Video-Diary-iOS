@@ -120,6 +120,7 @@ static NSDateFormatter *dateFormatter;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     self.videoURL = info[UIImagePickerControllerMediaURL];
+    NSLog(@"%@", self.videoURL);
     
 //    if (self.videoURL) {
 //        // Make sure this device supports videos in its photo album
@@ -132,11 +133,18 @@ static NSDateFormatter *dateFormatter;
 //        }
 //    }
     
+    NSData *videoData = [NSData dataWithContentsOfURL:self.videoURL];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
     
-    [self.videoController setContentURL:self.videoURL];
+    NSString *newPath = [NSString stringWithFormat:@"/%@.mov", self.video.fileKey];
+    NSString *tempPath = [documentsDirectory stringByAppendingFormat:newPath];
     
-    [self.videoController prepareToPlay];
-//    [self.videoController play];
+    [videoData writeToFile:tempPath atomically:NO];
+    
+    [[NSFileManager defaultManager] removeItemAtPath:[self.videoURL path] error:nil];
+    
+    self.videoURL = [NSURL fileURLWithPath:tempPath];
     
     [[FileStore sharedStore] setVideoURL:self.videoURL forKey:self.video.fileKey];
     
