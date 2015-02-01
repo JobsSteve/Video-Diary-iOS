@@ -18,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ics-f8-eCd">
-                    <rect key="frame" x="8" y="84" width="398" height="183"/>
+                    <rect key="frame" x="8" y="502" width="398" height="183"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -30,6 +30,7 @@
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lmo-jS-0o6">
                     <rect key="frame" x="0.0" y="692" width="414" height="44"/>
                     <items>
+                        <barButtonItem width="354" style="plain" systemItem="fixedSpace" id="tvE-lZ-n6p"/>
                         <barButtonItem systemItem="camera" id="h4Z-bj-ChU">
                             <connections>
                                 <action selector="takeVideo:" destination="-1" id="tjO-Jf-N3g"/>
@@ -38,7 +39,7 @@
                     </items>
                 </toolbar>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uI8-dc-Dcn">
-                    <rect key="frame" x="14" y="282" width="381" height="392"/>
+                    <rect key="frame" x="14" y="71" width="381" height="417"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>

@@ -13,9 +13,10 @@
 
 + (instancetype)sharedStore;
 
-
 - (void)setVideoURL:(NSURL *)url forKey:(NSString *)key;
 - (NSURL *)videoURLForKey:(NSString *)key;
 - (void)deleteFileForKey:(NSString *)key;
+
+- (NSString *)filePathForKey:(NSString *)key;
 
 @end

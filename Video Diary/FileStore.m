@@ -63,6 +63,16 @@
     [self.dictionary removeObjectForKey:key];
 }
 
+- (NSString *)filePathForKey:(NSString *)key
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *newPath = [NSString stringWithFormat:@"/%@.mov", key];
+    NSString *tempPath = [documentsDirectory stringByAppendingFormat:newPath];
+    
+    return tempPath;
+}
+
 
 
 @end

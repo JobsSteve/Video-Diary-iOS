@@ -123,25 +123,11 @@ static NSDateFormatter *dateFormatter;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     self.videoURL = info[UIImagePickerControllerMediaURL];
-    NSLog(@"%@", self.videoURL);
     
-//    if (self.videoURL) {
-//        // Make sure this device supports videos in its photo album
-//        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum([self.videoURL path])) {
-//            // Save the video to the photos album
-//            UISaveVideoAtPathToSavedPhotosAlbum([self.videoURL path], nil, nil, nil);
-//            
-//            // Remove the video from the temporary directory
-////            [[NSFileManager defaultManager] removeItemAtPath:[mediaURL path] error:nil];
-//        }
-//    }
-    
+    // Find documents directory
     NSData *videoData = [NSData dataWithContentsOfURL:self.videoURL];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-    NSString *newPath = [NSString stringWithFormat:@"/%@.mov", self.video.fileKey];
-    NSString *tempPath = [documentsDirectory stringByAppendingFormat:newPath];
+
+    NSString *tempPath = [[FileStore sharedStore] filePathForKey:self.video.fileKey];
     
     [videoData writeToFile:tempPath atomically:NO];
     
@@ -166,6 +152,8 @@ static NSDateFormatter *dateFormatter;
     return YES;
 }
 
+// Creating textview placeholder
+
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     if ([textView.text isEqualToString:@"Comment on your diary entry here..."]) {
@@ -183,6 +171,9 @@ static NSDateFormatter *dateFormatter;
     }
     [textView resignFirstResponder];
 }
+
+// UIControl resigns first responder
+
 - (IBAction)backgroundTapped:(id)sender
 {
     [self.view endEditing:YES];

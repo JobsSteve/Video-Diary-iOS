@@ -40,7 +40,13 @@
 {
     self = [super init];
     if (self) {
-        _privateVideos = [[NSMutableArray alloc] init];
+        NSString *path = [self videoArchivePath];
+        _privateVideos = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        
+        // If the array hadn't been saved previously, create a new empty one
+        if (!_privateVideos) {
+            _privateVideos = [[NSMutableArray alloc] init];
+        }
     }
     
     return self;
