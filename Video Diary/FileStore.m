@@ -51,7 +51,22 @@
 
 - (NSURL *)videoURLForKey:(NSString *)key
 {
-    return self.dictionary[key];
+//    return self.dictionary[key];
+    
+    // If possible, get it from the dictionary
+    NSURL *url = self.dictionary[key];
+    
+    if (!url) {
+        NSString *filePath = [self filePathForKey:key];
+        
+        if (filePath) {
+            url = [NSURL fileURLWithPath:filePath];
+            self.dictionary[key] = url;
+        } else {
+            NSLog(@"Error: unable to find %@", filePath);
+        }
+    }
+    return url;
 }
 
 - (void)deleteFileForKey:(NSString *)key
