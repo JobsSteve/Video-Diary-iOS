@@ -86,6 +86,9 @@ static NSDateFormatter *dateFormatter;
     // Save changes to video
     Video *video = self.video;
     video.comment = self.commentTextView.text;
+    
+    // Stop movie playing if playing
+    [self.videoController stop];
 }
 
 - (void)didReceiveMemoryWarning {
