@@ -56,9 +56,6 @@ static NSDateFormatter *dateFormatter;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    Video *video = self.video;
-    
 
     self.commentTextView.delegate = self;
     self.commentTextView.text = @"Comment on your diary entry here...";
@@ -137,9 +134,7 @@ static NSDateFormatter *dateFormatter;
     
     [[FileStore sharedStore] setVideoURL:self.videoURL forKey:self.video.fileKey];
     
-
     [self dismissViewControllerAnimated:YES completion:NULL];
-    
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {

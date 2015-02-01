@@ -61,16 +61,19 @@
     }
     
     [self.dictionary removeObjectForKey:key];
+    
+    NSString *filePath = [self filePathForKey:key];
+    [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
 }
 
 - (NSString *)filePathForKey:(NSString *)key
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *newPath = [NSString stringWithFormat:@"/%@.mov", key];
-    NSString *tempPath = [documentsDirectory stringByAppendingFormat:newPath];
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [documentDirectories firstObject];
+    NSString *pathString = [NSString stringWithFormat:@"/%@.mov", key];
+    NSString *newPath = [documentsDirectory stringByAppendingFormat:pathString];
     
-    return tempPath;
+    return newPath;
 }
 
 
