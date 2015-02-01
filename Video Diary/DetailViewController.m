@@ -87,8 +87,11 @@ static NSDateFormatter *dateFormatter;
     Video *video = self.video;
     video.comment = self.commentTextView.text;
     
-    // Stop movie playing if playing
-    [self.videoController stop];
+    // Only stop video playing if DetailViewController is popped off the stack (keeps playing if self.videoController goes fullscree
+    NSArray *viewControllers = self.navigationController.viewControllers;
+    if ([viewControllers indexOfObject:self] == NSNotFound) {
+        [self.videoController stop];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
