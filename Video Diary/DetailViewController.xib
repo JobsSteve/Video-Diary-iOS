@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController">
             <connections>
                 <outlet property="commentTextField" destination="deQ-Iv-18f" id="eAy-kf-hVS"/>
+                <outlet property="scrollView" destination="djs-FU-Vzo" id="gSS-l2-9Mh"/>
                 <outlet property="toolbar" destination="Lmo-jS-0o6" id="6uZ-pj-FLc"/>
                 <outlet property="videoView" destination="uI8-dc-Dcn" id="kyv-TX-NNd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -30,15 +31,20 @@
                     </items>
                     <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </toolbar>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uI8-dc-Dcn">
-                    <rect key="frame" x="14" y="71" width="381" height="572"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment here..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="deQ-Iv-18f">
-                    <rect key="frame" x="14" y="651" width="381" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="djs-FU-Vzo">
+                    <rect key="frame" x="-3" y="-88" width="421" height="780"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uI8-dc-Dcn">
+                            <rect key="frame" x="20" y="144" width="381" height="578"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment here..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="deQ-Iv-18f">
+                            <rect key="frame" x="20" y="730" width="381" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
