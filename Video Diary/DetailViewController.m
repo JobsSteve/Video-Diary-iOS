@@ -13,9 +13,9 @@
 #import "Video.h"
 #import "FileStore.h"
 
-@interface DetailViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate>
+@interface DetailViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextView *commentTextView;
+@property (weak, nonatomic) IBOutlet UITextField *commentTextField;
 @property (weak, nonatomic) IBOutlet UIView *videoView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
@@ -39,6 +39,7 @@ static NSDateFormatter *dateFormatter;
         dateFormatter.timeStyle = NSDateFormatterShortStyle;
     }
     self.navigationItem.title = [dateFormatter stringFromDate:video.dateCreated];
+    
 }
 
 #pragma mark - App lifecycle
@@ -57,9 +58,9 @@ static NSDateFormatter *dateFormatter;
 {
     [super viewWillAppear:animated];
 
-    self.commentTextView.delegate = self;
-    self.commentTextView.text = @"Comment on your diary entry here...";
-    self.commentTextView.textColor = [UIColor lightGrayColor]; //optional
+    self.commentTextField.delegate = self;
+    
+    self.commentTextField.text = self.video.comment;
     
     NSString *fileKey = self.video.fileKey;
     
@@ -84,8 +85,7 @@ static NSDateFormatter *dateFormatter;
     [self.view endEditing:YES];
     
     // Save changes to video
-    Video *video = self.video;
-    video.comment = self.commentTextView.text;
+    self.video.comment = self.commentTextField.text;
     
     // Only stop video playing if DetailViewController is popped off the stack (keeps playing if self.videoController goes fullscree
     NSArray *viewControllers = self.navigationController.viewControllers;
@@ -143,35 +143,12 @@ static NSDateFormatter *dateFormatter;
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    
-    if([text isEqualToString:@"\n"]) {
-        [textView resignFirstResponder];
-        return NO;
-    }
-    
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
     return YES;
 }
 
-// Creating textview placeholder
-
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    if ([textView.text isEqualToString:@"Comment on your diary entry here..."]) {
-        textView.text = @"";
-        textView.textColor = [UIColor blackColor]; //optional
-    }
-    [textView becomeFirstResponder];
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
-    if ([textView.text isEqualToString:@""]) {
-        textView.text = @"placeholder text here...";
-        textView.textColor = [UIColor lightGrayColor]; //optional
-    }
-    [textView resignFirstResponder];
-}
 
 // UIControl resigns first responder
 

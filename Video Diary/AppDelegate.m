@@ -26,6 +26,9 @@
     
     // Create an instance of UINavigationController; its stack contains only VideosTableViewController
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:videosTableViewController];
+    navController.navigationBar.tintColor = [UIColor orangeColor];
+    [navController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor orangeColor]}];
     
     // Place navControllers view in the window hierachy
     self.window.rootViewController = navController;
