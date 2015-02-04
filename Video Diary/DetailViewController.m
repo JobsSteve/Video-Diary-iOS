@@ -52,6 +52,45 @@ static NSDateFormatter *dateFormatter;
     [self.videoController.view setFrame:self.videoView.bounds];
     [self.videoView addSubview: self.videoController.view];
     
+    self.videoController.view.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSLayoutConstraint *width =[NSLayoutConstraint
+                                constraintWithItem:self.videoController.view
+                                attribute:NSLayoutAttributeWidth
+                                relatedBy:0
+                                toItem:self.videoView
+                                attribute:NSLayoutAttributeWidth
+                                multiplier:1.0
+                                constant:0];
+    NSLayoutConstraint *height =[NSLayoutConstraint
+                                 constraintWithItem:self.videoController.view
+                                 attribute:NSLayoutAttributeHeight
+                                 relatedBy:0
+                                 toItem:self.videoView
+                                 attribute:NSLayoutAttributeHeight
+                                 multiplier:1.0
+                                 constant:0];
+    NSLayoutConstraint *top = [NSLayoutConstraint
+                               constraintWithItem:self.videoController.view
+                               attribute:NSLayoutAttributeTop
+                               relatedBy:NSLayoutRelationEqual
+                               toItem:self.videoView
+                               attribute:NSLayoutAttributeTop
+                               multiplier:1.0f
+                               constant:0.f];
+    NSLayoutConstraint *leading = [NSLayoutConstraint
+                                   constraintWithItem:self.videoController.view
+                                   attribute:NSLayoutAttributeLeading
+                                   relatedBy:NSLayoutRelationEqual
+                                   toItem:self.videoView
+                                   attribute:NSLayoutAttributeLeading
+                                   multiplier:1.0f
+                                   constant:0.f];
+    [self.videoView addConstraint:width];
+    [self.videoView addConstraint:height];
+    [self.videoView addConstraint:top];
+    [self.videoView addConstraint:leading];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -155,6 +194,21 @@ static NSDateFormatter *dateFormatter;
 - (IBAction)backgroundTapped:(id)sender
 {
     [self.view endEditing:YES];
+    
+    for (UIView *subview in self.view.subviews) {
+        if ([subview hasAmbiguousLayout]) {
+            [subview exerciseAmbiguityInLayout];
+        }
+    }
+}
+
+- (void)viewDidLayoutSubviews
+{
+    for (UIView *subview in self.view.subviews) {
+        if ([subview hasAmbiguousLayout]) {
+            NSLog(@"AMBIGUOUS: %@", subview);
+        }
+    }
 }
 
 
