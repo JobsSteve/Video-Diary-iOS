@@ -50,10 +50,12 @@ static NSDateFormatter *dateFormatter;
     self.videoController = [[MPMoviePlayerController alloc] init];
     
     [self.videoController.view setFrame:self.videoView.bounds];
-    [self.videoView addSubview: self.videoController.view];
-    
+    self.videoController.view.contentMode = UIViewContentModeScaleAspectFit;
     self.videoController.view.translatesAutoresizingMaskIntoConstraints = NO;
     
+    [self.videoView addSubview: self.videoController.view];
+    
+    // The videoController should always match its superview constraints
     NSLayoutConstraint *width =[NSLayoutConstraint
                                 constraintWithItem:self.videoController.view
                                 attribute:NSLayoutAttributeWidth
