@@ -150,12 +150,20 @@ static NSDateFormatter *dateFormatter;
         [imagePicker setMediaTypes:@[(__bridge NSString *)kUTTypeMovie]];
     }
     
-    // If the device has a camera, take a picture, otherwise just pick from photo library
+    // If the device has a camera, take a video, otherwise alert user the device has no camera
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
     } else {
-        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No video camera!"
+                                                       message:@"This device does not have a video camera"
+                                                      delegate:nil
+                                             cancelButtonTitle:@"OK"
+                                             otherButtonTitles: nil];
+        [alert show];
+
+        return;
     }
     
     imagePicker.delegate = self;
