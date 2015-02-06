@@ -32,6 +32,9 @@
 		0572BBC51A78532B00720A2C /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0572BBC31A78532B00720A2C /* DetailViewController.xib */; };
 		059DC4871A7AFE0800DCA89B /* FileStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 059DC4861A7AFE0800DCA89B /* FileStore.m */; };
 		059DC4891A7B01BA00DCA89B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059DC4881A7B01BA00DCA89B /* MobileCoreServices.framework */; };
+		05CF7FC51A841F3C00C6C629 /* VideoCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CF7FC31A841F3C00C6C629 /* VideoCellTableViewCell.m */; };
+		05CF7FC61A841F3C00C6C629 /* VideoCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05CF7FC41A841F3C00C6C629 /* VideoCellTableViewCell.xib */; };
+		05CF7FC81A84293F00C6C629 /* dude.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 05CF7FC71A84293F00C6C629 /* dude.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +97,10 @@
 		059DC4851A7AFE0800DCA89B /* FileStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileStore.h; sourceTree = "<group>"; };
 		059DC4861A7AFE0800DCA89B /* FileStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileStore.m; sourceTree = "<group>"; };
 		059DC4881A7B01BA00DCA89B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		05CF7FC21A841F3C00C6C629 /* VideoCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCellTableViewCell.h; sourceTree = "<group>"; };
+		05CF7FC31A841F3C00C6C629 /* VideoCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCellTableViewCell.m; sourceTree = "<group>"; };
+		05CF7FC41A841F3C00C6C629 /* VideoCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCellTableViewCell.xib; sourceTree = "<group>"; };
+		05CF7FC71A84293F00C6C629 /* dude.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dude.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +234,10 @@
 				0572BBC11A78532B00720A2C /* DetailViewController.h */,
 				0572BBC21A78532B00720A2C /* DetailViewController.m */,
 				0572BBC31A78532B00720A2C /* DetailViewController.xib */,
+				05CF7FC21A841F3C00C6C629 /* VideoCellTableViewCell.h */,
+				05CF7FC31A841F3C00C6C629 /* VideoCellTableViewCell.m */,
+				05CF7FC41A841F3C00C6C629 /* VideoCellTableViewCell.xib */,
+				05CF7FC71A84293F00C6C629 /* dude.jpg */,
 				0572BBBB1A7715B800720A2C /* Model */,
 				0572BB9C1A77129200720A2C /* Images.xcassets */,
 				0572BB9E1A77129200720A2C /* LaunchScreen.xib */,
@@ -357,7 +368,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0572BBA01A77129200720A2C /* LaunchScreen.xib in Resources */,
+				05CF7FC81A84293F00C6C629 /* dude.jpg in Resources */,
 				0572BB9D1A77129200720A2C /* Images.xcassets in Resources */,
+				05CF7FC61A841F3C00C6C629 /* VideoCellTableViewCell.xib in Resources */,
 				0539192F1A8049500029B37E /* IQKeyboardManager.bundle in Resources */,
 				0572BBC51A78532B00720A2C /* DetailViewController.xib in Resources */,
 			);
@@ -382,6 +395,7 @@
 				0572BBBE1A77185100720A2C /* VideoStore.m in Sources */,
 				0572BBB71A7713C600720A2C /* VideosTableViewController.m in Sources */,
 				053919291A8049500029B37E /* IQSegmentedNextPrevious.m in Sources */,
+				05CF7FC51A841F3C00C6C629 /* VideoCellTableViewCell.m in Sources */,
 				0539192D1A8049500029B37E /* IQToolbar.m in Sources */,
 				053919261A8049500029B37E /* IQUIWindow+Hierarchy.m in Sources */,
 				0539192B1A8049500029B37E /* IQBarButtonItem.m in Sources */,

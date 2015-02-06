@@ -11,6 +11,7 @@
 #import "DetailViewController.h"
 #import "VideoStore.h"
 #import "Video.h"
+#import "VideoCellTableViewCell.h"
 
 @interface VideosTableViewController ()
 
@@ -57,8 +58,14 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [self.tableView registerClass:[UITableViewCell class]
-           forCellReuseIdentifier:@"UITableViewCell"];
+//    [self.tableView registerClass:[UITableViewCell class]
+//           forCellReuseIdentifier:@"UITableViewCell"];
+    
+    // Load the NIB file
+    UINib *nib = [UINib nibWithNibName:@"VideoCellTableViewCell" bundle:nil];
+    
+    // Register this NIB, which contains the cell
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"VideoCellTableViewCell"];
     
     self.tableView.rowHeight = 100.0;
 }
@@ -85,8 +92,11 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
 //    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCell"];
+    
+    // Get a new or recycled cell
+    VideoCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VideoCellTableViewCell"];
 
     
     
@@ -98,12 +108,14 @@
     static NSDateFormatter *dateFormatter;
     if (!dateFormatter) {
         dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateStyle = NSDateIntervalFormatterMediumStyle;
+        dateFormatter.dateStyle = NSDateIntervalFormatterFullStyle;
         dateFormatter.timeStyle = NSDateFormatterShortStyle;
     }
     
-    cell.textLabel.text = [dateFormatter stringFromDate:[video dateCreated]];
+    cell.dateLabel.text = [dateFormatter stringFromDate:[video dateCreated]];
+    cell.commentLabel.text = video.comment;
     
+    cell.thumbnailView.image = [UIImage imageNamed:@"dude.jpg"];
     return cell;
 }
 
