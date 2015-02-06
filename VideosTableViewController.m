@@ -191,13 +191,13 @@
 {
     Video *newVideo = [[VideoStore sharedStore] createVideo];
     
-    // Where is that video in the array?
-    NSInteger firstRow = [[[VideoStore sharedStore] allVideos] indexOfObject:newVideo];
+    DetailViewController *detailViewController = [[DetailViewController alloc] init];
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:firstRow inSection:0];
+    // Give detail view controller a pointer to the video object in row
+    detailViewController.video = newVideo;
     
-    // Insert this new row into the table
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+    // Push it onto the top of the navigation controller's stack
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 
