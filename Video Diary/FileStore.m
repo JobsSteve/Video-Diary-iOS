@@ -87,7 +87,7 @@
     NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [documentDirectories firstObject];
     NSString *pathString = [NSString stringWithFormat:@"/%@.mov", key];
-    NSString *newPath = [documentsDirectory stringByAppendingFormat:pathString];
+    NSString *newPath = [documentsDirectory stringByAppendingFormat:pathString, nil];
     
     return newPath;
 }
