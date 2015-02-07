@@ -115,7 +115,7 @@
     cell.dateLabel.text = [dateFormatter stringFromDate:[video dateCreated]];
     cell.commentLabel.text = video.comment;
     
-    cell.thumbnailView.image = [UIImage imageNamed:@"dude.jpg"];
+    cell.thumbnailView.image = video.thumbnail;
     return cell;
 }
 

@@ -45,6 +45,7 @@
     [aCoder encodeObject:self.dateCreated forKey:@"dateCreated"];
     [aCoder encodeObject:self.comment forKey:@"comment"];
     [aCoder encodeObject:self.fileKey forKey:@"fileKey"];
+    [aCoder encodeObject:self.thumbnail forKey:@"thumbnail"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -55,6 +56,7 @@
         _dateCreated = [aDecoder decodeObjectForKey:@"dateCreated"];
         _comment = [aDecoder decodeObjectForKey:@"comment"];
         _fileKey = [aDecoder decodeObjectForKey:@"fileKey"];
+        _thumbnail = [aDecoder decodeObjectForKey:@"thumbnail"];
     }
     return self;
 }

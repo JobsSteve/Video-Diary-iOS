@@ -21,6 +21,7 @@
 
 @property (strong, nonatomic) MPMoviePlayerController *videoController;
 @property (strong, nonatomic) NSURL *videoURL;
+@property (strong, nonatomic) UIImage *tempImage;
 
 @end
 
@@ -48,6 +49,12 @@ static NSDateFormatter *dateFormatter;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.videoController = [[MPMoviePlayerController alloc] init];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(movieThumbnailLoadComplete:)
+                                                 name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
+                                               object:self.videoController];
+
     
     [self.videoController.view setFrame:self.videoView.bounds];
     self.videoController.view.contentMode = UIViewContentModeScaleAspectFit;
@@ -116,6 +123,10 @@ static NSDateFormatter *dateFormatter;
         [self.videoController prepareToPlay];
     }
     
+    // Get thumbnail image from self.videoController
+    
+    [self.videoController requestThumbnailImagesAtTimes:@[@1.0f] timeOption:MPMovieTimeOptionExact];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -127,6 +138,7 @@ static NSDateFormatter *dateFormatter;
     
     // Save changes to video
     self.video.comment = self.commentTextField.text;
+    self.video.thumbnail = self.tempImage;
     
     // Only stop video playing if DetailViewController is popped off the stack (keeps playing if self.videoController goes fullscree
     NSArray *viewControllers = self.navigationController.viewControllers;
@@ -212,16 +224,14 @@ static NSDateFormatter *dateFormatter;
     }
 }
 
-- (void)viewDidLayoutSubviews
+#pragma mark - MPMoviePlayer Notification 
+
+- (void)movieThumbnailLoadComplete:(NSNotification *)receive
 {
-    for (UIView *subview in self.view.subviews) {
-        if ([subview hasAmbiguousLayout]) {
-            NSLog(@"AMBIGUOUS: %@", subview);
-        }
-    }
+    NSDictionary *receiveInfo = [receive userInfo];
+    self.tempImage = [receiveInfo valueForKey:MPMoviePlayerThumbnailImageKey];
+    
 }
-
-
 
 
 @end
