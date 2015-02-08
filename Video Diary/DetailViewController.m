@@ -56,12 +56,6 @@ static NSDateFormatter *dateFormatter;
     
     self.videoController = [[MPMoviePlayerController alloc] init];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(movieThumbnailLoadComplete:)
-                                                 name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
-                                               object:self.videoController];
-
-    
     [self.videoController.view setFrame:self.videoView.bounds];
     self.videoController.view.contentMode = UIViewContentModeScaleAspectFit;
     self.videoController.view.translatesAutoresizingMaskIntoConstraints = NO;
@@ -105,6 +99,17 @@ static NSDateFormatter *dateFormatter;
     [self.videoView addConstraint:height];
     [self.videoView addConstraint:top];
     [self.videoView addConstraint:leading];
+    
+    // Register for thumbnail resquest notification
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(movieThumbnailLoadComplete:)
+                                                 name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
+                                               object:self.videoController];
+    
+    // Register for dynamic type notification
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateFonts)
+                                                 name:UIContentSizeCategoryDidChangeNotification object:nil];
     
 }
 
@@ -278,6 +283,11 @@ static NSDateFormatter *dateFormatter;
         [self.navigationController popViewControllerAnimated:YES];
         NSLog(@" you have clicked Yes");
     }
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

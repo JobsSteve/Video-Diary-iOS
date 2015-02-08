@@ -14,11 +14,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIi-80-Wrs">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIi-80-Wrs">
                         <rect key="frame" x="102" y="13" width="210" height="45"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="45" id="Q7E-5Z-anV"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -26,8 +23,8 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Ba-zc-Gm4">
                         <rect key="frame" x="8" y="8" width="86" height="86"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="86" id="89I-Po-eb6"/>
-                            <constraint firstAttribute="height" constant="86" id="FlK-NB-6FG"/>
+                            <constraint firstAttribute="width" constant="86" placeholder="YES" id="AGv-Q6-UEk"/>
+                            <constraint firstAttribute="height" constant="86" id="Ydq-Hq-7fg"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIh-FC-k7p">
@@ -38,20 +35,22 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="OIh-FC-k7p" firstAttribute="top" secondItem="vIi-80-Wrs" secondAttribute="bottom" constant="8" symbolic="YES" id="082-cI-lfS"/>
                     <constraint firstItem="OIh-FC-k7p" firstAttribute="leading" secondItem="9Ba-zc-Gm4" secondAttribute="trailing" constant="8" id="8bj-OD-wRd"/>
                     <constraint firstAttribute="trailingMargin" secondItem="OIh-FC-k7p" secondAttribute="trailing" constant="-1" id="Dcb-j0-8dI"/>
                     <constraint firstItem="vIi-80-Wrs" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="J39-dj-NUW"/>
                     <constraint firstItem="vIi-80-Wrs" firstAttribute="leading" secondItem="9Ba-zc-Gm4" secondAttribute="trailing" constant="8" id="Ojq-s0-YFK"/>
+                    <constraint firstItem="9Ba-zc-Gm4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="RBF-be-804"/>
                     <constraint firstItem="9Ba-zc-Gm4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="fGa-h6-M5W"/>
                     <constraint firstItem="vIi-80-Wrs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="fSf-LA-nGP"/>
                     <constraint firstAttribute="centerY" secondItem="9Ba-zc-Gm4" secondAttribute="centerY" id="l6J-Wa-zff"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="OIh-FC-k7p" secondAttribute="bottom" constant="6.5" id="nLd-TH-eKc"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="commentLabel" destination="OIh-FC-k7p" id="gfJ-kd-CXT"/>
                 <outlet property="dateLabel" destination="vIi-80-Wrs" id="ZQi-Gd-cNw"/>
                 <outlet property="thumbnailView" destination="9Ba-zc-Gm4" id="I8W-xx-byt"/>
+                <outlet property="thumbnailViewHeightConstraint" destination="Ydq-Hq-7fg" id="9HZ-Hl-OMg"/>
             </connections>
             <point key="canvasLocation" x="204" y="331"/>
         </tableViewCell>
