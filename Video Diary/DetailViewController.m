@@ -11,9 +11,10 @@
 
 #import "DetailViewController.h"
 #import "Video.h"
+#import "VideoStore.h"
 #import "FileStore.h"
 
-@interface DetailViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
+@interface DetailViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *commentTextField;
 @property (weak, nonatomic) IBOutlet UIView *videoView;
@@ -48,6 +49,11 @@ static NSDateFormatter *dateFormatter;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    UIBarButtonItem *cancelVideo = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
+                                                                                target:self
+                                                                                action:@selector(cancel:)];
+    self.navigationItem.rightBarButtonItem = cancelVideo;
+    
     self.videoController = [[MPMoviePlayerController alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -126,6 +132,8 @@ static NSDateFormatter *dateFormatter;
     // Get thumbnail image from self.videoController
     
     [self.videoController requestThumbnailImagesAtTimes:@[@1.0f] timeOption:MPMovieTimeOptionExact];
+    
+    [self updateFonts];
     
 }
 
@@ -232,6 +240,42 @@ static NSDateFormatter *dateFormatter;
     self.tempImage = [receiveInfo valueForKey:MPMoviePlayerThumbnailImageKey];
     
 }
+
+#pragma mark - Dynamic Type
+
+- (void)updateFonts
+{
+    UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    self.commentTextField.font = font;
+}
+
+- (void)cancel:(id)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Delete"
+                                                   message:@"Are you surewant to delete this video?"
+                                                  delegate:self
+                                         cancelButtonTitle:@"Cancel"
+                                         otherButtonTitles: nil];
+    [alert addButtonWithTitle:@"Yes"];
+    [alert show];
+
+   
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        NSLog(@" you have clicked Cancel");
+        return;
+    } else if (buttonIndex == 1) {
+        // If the user cancelled, then remoce the BNRItem from the store
+        [[VideoStore sharedStore] removeVideo:self.video];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        NSLog(@" you have clicked Yes");
+    }
+}
+
 
 
 @end
