@@ -51,7 +51,7 @@ static NSDateFormatter *dateFormatter;
     // Do any additional setup after loading the view from its nib.
     UIBarButtonItem *cancelVideo = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
                                                                                 target:self
-                                                                                action:@selector(cancel:)];
+                                                                                action:@selector(delete:)];
     self.navigationItem.rightBarButtonItem = cancelVideo;
     
     self.videoController = [[MPMoviePlayerController alloc] init];
@@ -249,7 +249,9 @@ static NSDateFormatter *dateFormatter;
     self.commentTextField.font = font;
 }
 
-- (void)cancel:(id)sender
+#pragma mark - delete button
+
+- (void)delete:(id)sender
 {
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Delete"
                                                    message:@"Are you surewant to delete this video?"
@@ -261,6 +263,8 @@ static NSDateFormatter *dateFormatter;
 
    
 }
+
+#pragma mark - UIAlerView delegate
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
