@@ -31,21 +31,34 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIh-FC-k7p">
-                        <rect key="frame" x="102" y="66" width="211" height="21"/>
+                        <rect key="frame" x="102" y="66" width="211" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oQs-wl-WBf">
+                        <rect key="frame" x="8" y="8" width="86" height="86"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="showVideo:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ggC-Qe-qpl"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="OIh-FC-k7p" firstAttribute="top" secondItem="vIi-80-Wrs" secondAttribute="bottom" constant="8" symbolic="YES" id="082-cI-lfS"/>
+                    <constraint firstItem="9Ba-zc-Gm4" firstAttribute="bottom" secondItem="oQs-wl-WBf" secondAttribute="bottom" id="3Po-3K-vro"/>
                     <constraint firstItem="OIh-FC-k7p" firstAttribute="leading" secondItem="9Ba-zc-Gm4" secondAttribute="trailing" constant="8" id="8bj-OD-wRd"/>
                     <constraint firstAttribute="trailingMargin" secondItem="OIh-FC-k7p" secondAttribute="trailing" constant="-1" id="Dcb-j0-8dI"/>
+                    <constraint firstItem="9Ba-zc-Gm4" firstAttribute="trailing" secondItem="oQs-wl-WBf" secondAttribute="trailing" id="GTo-Xx-z8H"/>
                     <constraint firstItem="vIi-80-Wrs" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="J39-dj-NUW"/>
                     <constraint firstItem="vIi-80-Wrs" firstAttribute="leading" secondItem="9Ba-zc-Gm4" secondAttribute="trailing" constant="8" id="Ojq-s0-YFK"/>
                     <constraint firstItem="9Ba-zc-Gm4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="fGa-h6-M5W"/>
                     <constraint firstItem="vIi-80-Wrs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="fSf-LA-nGP"/>
+                    <constraint firstItem="9Ba-zc-Gm4" firstAttribute="top" secondItem="oQs-wl-WBf" secondAttribute="top" id="kyb-xp-LBM"/>
                     <constraint firstAttribute="centerY" secondItem="9Ba-zc-Gm4" secondAttribute="centerY" id="l6J-Wa-zff"/>
+                    <constraint firstItem="9Ba-zc-Gm4" firstAttribute="leading" secondItem="oQs-wl-WBf" secondAttribute="leading" id="wSm-73-6lg"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

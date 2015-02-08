@@ -34,6 +34,7 @@
 		059DC4891A7B01BA00DCA89B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059DC4881A7B01BA00DCA89B /* MobileCoreServices.framework */; };
 		05CF7FC51A841F3C00C6C629 /* VideoCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CF7FC31A841F3C00C6C629 /* VideoCellTableViewCell.m */; };
 		05CF7FC61A841F3C00C6C629 /* VideoCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05CF7FC41A841F3C00C6C629 /* VideoCellTableViewCell.xib */; };
+		05D06FA51A86AED500D58656 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D06FA41A86AED500D58656 /* VideoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,8 @@
 		05CF7FC21A841F3C00C6C629 /* VideoCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCellTableViewCell.h; sourceTree = "<group>"; };
 		05CF7FC31A841F3C00C6C629 /* VideoCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCellTableViewCell.m; sourceTree = "<group>"; };
 		05CF7FC41A841F3C00C6C629 /* VideoCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCellTableViewCell.xib; sourceTree = "<group>"; };
+		05D06FA31A86AED500D58656 /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
+		05D06FA41A86AED500D58656 /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +238,8 @@
 				05CF7FC21A841F3C00C6C629 /* VideoCellTableViewCell.h */,
 				05CF7FC31A841F3C00C6C629 /* VideoCellTableViewCell.m */,
 				05CF7FC41A841F3C00C6C629 /* VideoCellTableViewCell.xib */,
+				05D06FA31A86AED500D58656 /* VideoViewController.h */,
+				05D06FA41A86AED500D58656 /* VideoViewController.m */,
 				0572BBBB1A7715B800720A2C /* Model */,
 				0572BB9C1A77129200720A2C /* Images.xcassets */,
 				0572BB9E1A77129200720A2C /* LaunchScreen.xib */,
@@ -397,6 +402,7 @@
 				0539192B1A8049500029B37E /* IQBarButtonItem.m in Sources */,
 				059DC4871A7AFE0800DCA89B /* FileStore.m in Sources */,
 				053919251A8049500029B37E /* IQUIView+Hierarchy.m in Sources */,
+				05D06FA51A86AED500D58656 /* VideoViewController.m in Sources */,
 				053919281A8049500029B37E /* IQKeyboardReturnKeyHandler.m in Sources */,
 				0572BB951A77129200720A2C /* Video_Diary.xcdatamodeld in Sources */,
 				0539192C1A8049500029B37E /* IQTitleBarButtonItem.m in Sources */,

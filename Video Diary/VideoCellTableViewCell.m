@@ -20,4 +20,11 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)showVideo:(id)sender
+{
+    if (self.actionBlock) {
+        self.actionBlock();
+    }
+}
+
 @end
