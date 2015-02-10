@@ -20,6 +20,11 @@
 
 @implementation VideosTableViewController
 
++ (UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder
+{
+    return [[self alloc] init];
+}
+
 #pragma mark - Initializers
 
 // Designated initializer
@@ -30,6 +35,8 @@
         UINavigationItem *navItem = self.navigationItem;
         navItem.title = @"Video Diary";
         
+        self.restorationIdentifier = NSStringFromClass([self class]);
+        self.restorationClass = [self class];
         
         // Bar button item that will send addNewVideo: to VideosTableViewController
         UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewVideo:)];

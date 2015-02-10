@@ -10,7 +10,7 @@
 
 @class Video;
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : UIViewController <UIViewControllerRestoration>
 
 @property (nonatomic, strong) Video *video;
 

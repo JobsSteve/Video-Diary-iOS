@@ -15,7 +15,6 @@
 @interface VideoStore ()
 
 @property (nonatomic) NSMutableArray *privateVideos;
-@property (nonatomic, strong) NSMutableArray *allAssetTypes;
 @property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, strong) NSManagedObjectModel *model;
 

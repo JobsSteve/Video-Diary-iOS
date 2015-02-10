@@ -16,25 +16,37 @@
 
 @implementation AppDelegate
 
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    return YES;
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    // If state restoration did not occur, set up the view controller hierachy
+    if (!self.window.rootViewController) {
+        VideosTableViewController *videosTableViewController = [[VideosTableViewController alloc] init];
+        
+        // Create an instance of UINavigationController; its stack contains only VideosTableViewController
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:videosTableViewController];
+        
+        // Give the navController a restoration identifier
+        navController.restorationIdentifier = NSStringFromClass([navController class]);
+        
+        navController.navigationBar.tintColor = [UIColor orangeColor];
+        [navController.navigationBar
+         setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor orangeColor]}];
+        
+        // Place navControllers view in the window hierachy
+        self.window.rootViewController = navController;
+    }
     
-    VideosTableViewController *videosTableViewController = [[VideosTableViewController alloc] init];
-    
-    // Create an instance of UINavigationController; its stack contains only VideosTableViewController
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:videosTableViewController];
-    navController.navigationBar.tintColor = [UIColor orangeColor];
-    [navController.navigationBar
-     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor orangeColor]}];
-    
-    // Place navControllers view in the window hierachy
-    self.window.rootViewController = navController;
-    
-    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
@@ -65,6 +77,18 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+#pragma mark - State restoration
+
+- (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder
+{
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
+{
+    return YES;
 }
 
 #pragma mark - Core Data stack
