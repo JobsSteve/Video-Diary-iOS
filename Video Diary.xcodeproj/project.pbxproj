@@ -33,6 +33,7 @@
 		059DC4891A7B01BA00DCA89B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059DC4881A7B01BA00DCA89B /* MobileCoreServices.framework */; };
 		05CA3CE01A899CE200C910D1 /* ImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CA3CDF1A899CE200C910D1 /* ImageTransformer.m */; };
 		05CA3CE31A899F4200C910D1 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CA3CE21A899F4200C910D1 /* Video.m */; };
+		05CA3D171A8ACF9400C910D1 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CA3D161A8ACF9400C910D1 /* VideoViewController.m */; };
 		05CF7FC51A841F3C00C6C629 /* VideoCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CF7FC31A841F3C00C6C629 /* VideoCellTableViewCell.m */; };
 		05CF7FC61A841F3C00C6C629 /* VideoCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05CF7FC41A841F3C00C6C629 /* VideoCellTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -99,6 +100,8 @@
 		05CA3CDF1A899CE200C910D1 /* ImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTransformer.m; sourceTree = "<group>"; };
 		05CA3CE11A899F4200C910D1 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Video.h; path = ../Video.h; sourceTree = "<group>"; };
 		05CA3CE21A899F4200C910D1 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Video.m; path = ../Video.m; sourceTree = "<group>"; };
+		05CA3D151A8ACF9400C910D1 /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
+		05CA3D161A8ACF9400C910D1 /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
 		05CF7FC21A841F3C00C6C629 /* VideoCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCellTableViewCell.h; sourceTree = "<group>"; };
 		05CF7FC31A841F3C00C6C629 /* VideoCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCellTableViewCell.m; sourceTree = "<group>"; };
 		05CF7FC41A841F3C00C6C629 /* VideoCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCellTableViewCell.xib; sourceTree = "<group>"; };
@@ -238,6 +241,8 @@
 				05CF7FC21A841F3C00C6C629 /* VideoCellTableViewCell.h */,
 				05CF7FC31A841F3C00C6C629 /* VideoCellTableViewCell.m */,
 				05CF7FC41A841F3C00C6C629 /* VideoCellTableViewCell.xib */,
+				05CA3D151A8ACF9400C910D1 /* VideoViewController.h */,
+				05CA3D161A8ACF9400C910D1 /* VideoViewController.m */,
 				0572BBBB1A7715B800720A2C /* Model */,
 				0572BB9C1A77129200720A2C /* Images.xcassets */,
 				0572BB9E1A77129200720A2C /* LaunchScreen.xib */,
@@ -393,6 +398,7 @@
 			files = (
 				053919271A8049500029B37E /* IQKeyboardManager.m in Sources */,
 				0572BB921A77129200720A2C /* AppDelegate.m in Sources */,
+				05CA3D171A8ACF9400C910D1 /* VideoViewController.m in Sources */,
 				0572BBBE1A77185100720A2C /* VideoStore.m in Sources */,
 				0572BBB71A7713C600720A2C /* VideosTableViewController.m in Sources */,
 				05CA3CE01A899CE200C910D1 /* ImageTransformer.m in Sources */,

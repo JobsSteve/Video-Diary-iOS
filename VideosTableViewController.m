@@ -12,9 +12,12 @@
 #import "VideoStore.h"
 #import "Video.h"
 #import "VideoCellTableViewCell.h"
+#import "VideoViewController.h"
+#import "FileStore.h"
 
-@interface VideosTableViewController ()
+@interface VideosTableViewController () <UIPopoverControllerDelegate>
 
+@property (strong, nonatomic) UIPopoverController *videoPopover;
 
 @end
 
@@ -127,6 +130,37 @@
     cell.commentLabel.text = video.comment;
     
     cell.thumbnailView.image = video.thumbnail;
+    
+    __weak VideoCellTableViewCell *weakCell = cell;
+    
+    cell.actionBlock = ^{
+        NSLog(@"Going to show video for %@", video);
+        
+        VideoCellTableViewCell *strongCell = weakCell;
+        
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            NSString *fileKey = video.fileKey;
+            
+            // Get the NSString for the video NSURL from the image store
+            NSURL *tmpURL = [[FileStore sharedStore] videoURLForKey:fileKey];
+            if (!tmpURL) {
+                return;
+            }
+            // Make a rectangle from the frame of the thumbnail relative to the table view
+            CGRect rect = [self.view convertRect:strongCell.thumbnailView.bounds fromView:strongCell.thumbnailView];
+            
+            VideoViewController *vvc = [[VideoViewController alloc] init];
+            vvc.videoURL = tmpURL;
+            
+            // Present a 600 x 600 popover from the rect
+            self.videoPopover = [[UIPopoverController alloc] initWithContentViewController:vvc];
+            self.videoPopover.delegate = self;
+            self.videoPopover.popoverContentSize = CGSizeMake(600, 600);
+            [self.videoPopover presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+            
+        }
+    };
+
     return cell;
 }
 

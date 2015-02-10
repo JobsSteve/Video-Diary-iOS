@@ -13,4 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 
+@property (copy, nonatomic) void (^actionBlock)(void);
+
 @end

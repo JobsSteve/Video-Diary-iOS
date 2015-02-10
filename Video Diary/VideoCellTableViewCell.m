@@ -68,4 +68,11 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (IBAction)showVideo:(id)sender
+{
+    if (self.actionBlock) {
+        self.actionBlock();
+    }
+}
+
 @end
