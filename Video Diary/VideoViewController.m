@@ -38,7 +38,6 @@
     
     [self.videoController.view setFrame:self.videoView.bounds];
     self.videoController.view.contentMode = UIViewContentModeScaleAspectFit;
-    self.videoController.view.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.videoView addSubview: self.videoController.view];
     
