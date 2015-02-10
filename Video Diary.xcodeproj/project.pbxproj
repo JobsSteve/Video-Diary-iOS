@@ -26,12 +26,13 @@
 		0572BBA01A77129200720A2C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0572BB9E1A77129200720A2C /* LaunchScreen.xib */; };
 		0572BBAC1A77129300720A2C /* Video_DiaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0572BBAB1A77129300720A2C /* Video_DiaryTests.m */; };
 		0572BBB71A7713C600720A2C /* VideosTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0572BBB61A7713C600720A2C /* VideosTableViewController.m */; };
-		0572BBBA1A7715B200720A2C /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 0572BBB91A7715B200720A2C /* Video.m */; };
 		0572BBBE1A77185100720A2C /* VideoStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 0572BBBD1A77185100720A2C /* VideoStore.m */; };
 		0572BBC41A78532B00720A2C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0572BBC21A78532B00720A2C /* DetailViewController.m */; };
 		0572BBC51A78532B00720A2C /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0572BBC31A78532B00720A2C /* DetailViewController.xib */; };
 		059DC4871A7AFE0800DCA89B /* FileStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 059DC4861A7AFE0800DCA89B /* FileStore.m */; };
 		059DC4891A7B01BA00DCA89B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059DC4881A7B01BA00DCA89B /* MobileCoreServices.framework */; };
+		05CA3CE01A899CE200C910D1 /* ImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CA3CDF1A899CE200C910D1 /* ImageTransformer.m */; };
+		05CA3CE31A899F4200C910D1 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CA3CE21A899F4200C910D1 /* Video.m */; };
 		05CF7FC51A841F3C00C6C629 /* VideoCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CF7FC31A841F3C00C6C629 /* VideoCellTableViewCell.m */; };
 		05CF7FC61A841F3C00C6C629 /* VideoCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05CF7FC41A841F3C00C6C629 /* VideoCellTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -86,8 +87,6 @@
 		0572BBAB1A77129300720A2C /* Video_DiaryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Video_DiaryTests.m; sourceTree = "<group>"; };
 		0572BBB51A7713C600720A2C /* VideosTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VideosTableViewController.h; path = ../VideosTableViewController.h; sourceTree = "<group>"; };
 		0572BBB61A7713C600720A2C /* VideosTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VideosTableViewController.m; path = ../VideosTableViewController.m; sourceTree = "<group>"; };
-		0572BBB81A7715B200720A2C /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
-		0572BBB91A7715B200720A2C /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
 		0572BBBC1A77185100720A2C /* VideoStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoStore.h; sourceTree = "<group>"; };
 		0572BBBD1A77185100720A2C /* VideoStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoStore.m; sourceTree = "<group>"; };
 		0572BBC11A78532B00720A2C /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -96,6 +95,10 @@
 		059DC4851A7AFE0800DCA89B /* FileStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileStore.h; sourceTree = "<group>"; };
 		059DC4861A7AFE0800DCA89B /* FileStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileStore.m; sourceTree = "<group>"; };
 		059DC4881A7B01BA00DCA89B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		05CA3CDE1A899CE200C910D1 /* ImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTransformer.h; sourceTree = "<group>"; };
+		05CA3CDF1A899CE200C910D1 /* ImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTransformer.m; sourceTree = "<group>"; };
+		05CA3CE11A899F4200C910D1 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Video.h; path = ../Video.h; sourceTree = "<group>"; };
+		05CA3CE21A899F4200C910D1 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Video.m; path = ../Video.m; sourceTree = "<group>"; };
 		05CF7FC21A841F3C00C6C629 /* VideoCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCellTableViewCell.h; sourceTree = "<group>"; };
 		05CF7FC31A841F3C00C6C629 /* VideoCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCellTableViewCell.m; sourceTree = "<group>"; };
 		05CF7FC41A841F3C00C6C629 /* VideoCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCellTableViewCell.xib; sourceTree = "<group>"; };
@@ -272,12 +275,14 @@
 		0572BBBB1A7715B800720A2C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0572BBB81A7715B200720A2C /* Video.h */,
-				0572BBB91A7715B200720A2C /* Video.m */,
+				05CA3CE11A899F4200C910D1 /* Video.h */,
+				05CA3CE21A899F4200C910D1 /* Video.m */,
 				0572BBBC1A77185100720A2C /* VideoStore.h */,
 				0572BBBD1A77185100720A2C /* VideoStore.m */,
 				059DC4851A7AFE0800DCA89B /* FileStore.h */,
 				059DC4861A7AFE0800DCA89B /* FileStore.m */,
+				05CA3CDE1A899CE200C910D1 /* ImageTransformer.h */,
+				05CA3CDF1A899CE200C910D1 /* ImageTransformer.m */,
 				0572BB931A77129200720A2C /* Video_Diary.xcdatamodeld */,
 			);
 			name = Model;
@@ -390,7 +395,9 @@
 				0572BB921A77129200720A2C /* AppDelegate.m in Sources */,
 				0572BBBE1A77185100720A2C /* VideoStore.m in Sources */,
 				0572BBB71A7713C600720A2C /* VideosTableViewController.m in Sources */,
+				05CA3CE01A899CE200C910D1 /* ImageTransformer.m in Sources */,
 				053919291A8049500029B37E /* IQSegmentedNextPrevious.m in Sources */,
+				05CA3CE31A899F4200C910D1 /* Video.m in Sources */,
 				05CF7FC51A841F3C00C6C629 /* VideoCellTableViewCell.m in Sources */,
 				0539192D1A8049500029B37E /* IQToolbar.m in Sources */,
 				053919261A8049500029B37E /* IQUIWindow+Hierarchy.m in Sources */,
@@ -400,7 +407,6 @@
 				053919281A8049500029B37E /* IQKeyboardReturnKeyHandler.m in Sources */,
 				0572BB951A77129200720A2C /* Video_Diary.xcdatamodeld in Sources */,
 				0539192C1A8049500029B37E /* IQTitleBarButtonItem.m in Sources */,
-				0572BBBA1A7715B200720A2C /* Video.m in Sources */,
 				053919241A8049500029B37E /* IQNSArray+Sort.m in Sources */,
 				0572BB8F1A77129200720A2C /* main.m in Sources */,
 				0539192A1A8049500029B37E /* IQTextView.m in Sources */,
