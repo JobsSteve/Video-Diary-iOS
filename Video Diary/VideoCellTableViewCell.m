@@ -40,6 +40,7 @@
     // Configure the view for the selected state
 }
 
+
 - (void)updateInterfaceForDynamicTypeSize
 {
     UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
@@ -67,5 +68,14 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+
+- (IBAction)showVideo:(id)sender
+{
+    if (self.actionBlock) {
+        self.actionBlock();
+    }
+}
+
 
 @end

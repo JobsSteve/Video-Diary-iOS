@@ -12,9 +12,12 @@
 #import "VideoStore.h"
 #import "Video.h"
 #import "VideoCellTableViewCell.h"
+#import "VideoViewController.h"
+#import "FileStore.h"
 
-@interface VideosTableViewController ()
+@interface VideosTableViewController () <UIPopoverControllerDelegate>
 
+@property (strong, nonatomic) UIPopoverController *videoPopover;
 
 @end
 
@@ -103,14 +106,9 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-//    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCell"];
-    
     // Get a new or recycled cell
     VideoCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VideoCellTableViewCell"];
 
-    
-    
     // Configure the cell...
     NSArray *videos = [[VideoStore sharedStore] allVideos];
     Video *video = videos[indexPath.row];
@@ -127,6 +125,32 @@
     cell.commentLabel.text = video.comment;
     
     cell.thumbnailView.image = video.thumbnail;
+    
+    cell.actionBlock = ^{
+        NSLog(@"Going to show video for %@", video);
+        
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            NSString *fileKey = video.fileKey;
+            
+            // Get the NSString for the video NSURL from the image store
+            NSURL *tmpURL = [[FileStore sharedStore] videoURLForKey:fileKey];
+            if (!tmpURL) {
+                return;
+            }
+            // Make a rectangle from the frame of the thumbnail relative to the table view
+            CGRect rect = [self.view convertRect:cell.thumbnailView.bounds fromView:cell.thumbnailView];
+            
+            VideoViewController *vvc = [[VideoViewController alloc] init];
+            vvc.videoURL = tmpURL;
+            
+            // Present a 600 x 600 popover from the rect
+            self.videoPopover = [[UIPopoverController alloc] initWithContentViewController:vvc];
+            self.videoPopover.delegate = self;
+            self.videoPopover.popoverContentSize = CGSizeMake(600, 600);
+            [self.videoPopover presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+           
+        }
+    };
     return cell;
 }
 
@@ -211,6 +235,7 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
+
 - (void)updateTableViewForDynamicTypeSize
 {
     static NSDictionary *cellHeightDictionary;
@@ -234,6 +259,12 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    self.videoPopover = nil;
+}
+
 
 
 
