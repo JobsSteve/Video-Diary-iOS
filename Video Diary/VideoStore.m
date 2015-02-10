@@ -83,7 +83,7 @@
     if ([self.allVideos count] == 0) {
         order = 1.0;
     } else {
-        order = [[self.privateVideos lastObject] orderingValue] + 1.0;
+        order = [[self.privateVideos firstObject] orderingValue] + 1.0;
     }
     NSLog(@"Adding after %lu videos, order = %.2f", (unsigned long)[self.privateVideos count], order);
     Video *video = [NSEntityDescription insertNewObjectForEntityForName:@"Video" inManagedObjectContext:self.context];
@@ -128,7 +128,7 @@
         request.entity = e;
         
         NSSortDescriptor *sd = [NSSortDescriptor sortDescriptorWithKey:@"orderingValue"
-                                                             ascending:YES];
+                                                             ascending:NO];
         request.sortDescriptors = @[sd];
         
         NSError *error;

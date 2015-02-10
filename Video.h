@@ -13,10 +13,10 @@
 
 @interface Video : NSManagedObject
 
-@property (nonatomic, retain) NSDate * dateCreated;
-@property (nonatomic, retain) NSString * comment;
-@property (nonatomic, retain) NSString * fileKey;
-@property (nonatomic, retain) UIImage *thumbnail;
+@property (nonatomic, strong) NSDate * dateCreated;
+@property (nonatomic, strong) NSString * comment;
+@property (nonatomic, strong) NSString * fileKey;
+@property (nonatomic, strong) UIImage *thumbnail;
 @property (nonatomic) double orderingValue;
 
 
