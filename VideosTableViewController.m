@@ -152,10 +152,10 @@
             VideoViewController *vvc = [[VideoViewController alloc] init];
             vvc.videoURL = tmpURL;
             
-            // Present a 600 x 600 popover from the rect
+            // Present a 600 x 800 popover from the rect
             self.videoPopover = [[UIPopoverController alloc] initWithContentViewController:vvc];
             self.videoPopover.delegate = self;
-            self.videoPopover.popoverContentSize = CGSizeMake(600, 600);
+            self.videoPopover.popoverContentSize = CGSizeMake(600, 800);
             [self.videoPopover presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
             
         }
