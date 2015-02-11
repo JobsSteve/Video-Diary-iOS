@@ -15,7 +15,7 @@
 #import "VideoViewController.h"
 #import "FileStore.h"
 
-@interface VideosTableViewController () <UIPopoverControllerDelegate>
+@interface VideosTableViewController () <UIPopoverControllerDelegate, UIDataSourceModelAssociation>
 
 @property (strong, nonatomic) UIPopoverController *videoPopover;
 
@@ -67,20 +67,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-//    [self.tableView registerClass:[UITableViewCell class]
-//           forCellReuseIdentifier:@"UITableViewCell"];
-    
     // Load the NIB file
     UINib *nib = [UINib nibWithNibName:@"VideoCellTableViewCell" bundle:nil];
     
     // Register this NIB, which contains the cell
     [self.tableView registerNib:nib forCellReuseIdentifier:@"VideoCellTableViewCell"];
+    
+    self.tableView.restorationIdentifier = @"VideosTableViewController";
 
 }
 
@@ -263,6 +256,51 @@
     [self.tableView setRowHeight:cellHeight.floatValue];
     [self.tableView reloadData];
 }
+
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    [coder encodeBool:self.isEditing forKey:@"TableViewIsEditing"];
+    
+    [super encodeRestorableStateWithCoder:coder];
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    self.editing = [coder decodeBoolForKey:@"TableViewIsEditing"];
+    
+    [super decodeRestorableStateWithCoder:coder];
+}
+
+- (NSString *)modelIdentifierForElementAtIndexPath:(NSIndexPath *)idx inView:(UIView *)view
+{
+    NSString *identifier = nil;
+    
+    if (idx && view) {
+        // Return an identifier of the given NSIndexPath, in case next time the data source changes
+        Video *video = [[VideoStore sharedStore] allVideos][idx.row];
+        identifier = video.fileKey;
+    }
+    return identifier;
+}
+
+- (NSIndexPath *)indexPathForElementWithModelIdentifier:(NSString *)identifier inView:(UIView *)view
+{
+    NSIndexPath *indexPath = nil;
+    
+    if (identifier && view) {
+        NSArray *videos = [[VideoStore sharedStore] allVideos];
+        for (Video *video in videos) {
+            if ([identifier isEqualToString:video.fileKey]) {
+                int row = [videos indexOfObjectIdenticalTo:video];
+                indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+                break;
+            }
+        }
+    }
+    return indexPath;
+}
+
+
 
 - (void)dealloc
 {

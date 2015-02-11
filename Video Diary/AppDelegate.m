@@ -91,6 +91,21 @@
     return YES;
 }
 
+- (UIViewController *)application:(UIApplication *)application viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder
+{
+    // Create a new nav controller
+    UIViewController *vc = [[UINavigationController alloc] init];
+    
+    // The last object in the path array is the restoration identifier for this view controller
+    vc.restorationIdentifier = [identifierComponents lastObject];
+    
+    if ([identifierComponents count] == 1) {
+        // This is the root view controller
+        self.window.rootViewController = vc;
+    }
+    return vc;
+}
+
 #pragma mark - Core Data stack
 
 @synthesize managedObjectContext = _managedObjectContext;

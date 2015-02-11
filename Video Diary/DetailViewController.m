@@ -300,6 +300,33 @@ static NSDateFormatter *dateFormatter;
     }
 }
 
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    [coder encodeObject:self.video.fileKey forKey:@"video.fileKey"];
+    
+    // Save changes to video
+    self.video.comment = self.commentTextField.text;
+    self.video.thumbnail = self.tempImage;
+    
+    // Have store save changes to disk
+    [[VideoStore sharedStore] saveChanges];
+    
+    [super encodeRestorableStateWithCoder:coder];
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    NSString *fileKey = [coder decodeObjectForKey:@"video.fileKey"];
+    for (Video *video in [[VideoStore sharedStore] allVideos]) {
+        if ([fileKey isEqualToString:video.fileKey]) {
+            self.video = video;
+            break;
+        }
+    }
+    
+    [super decodeRestorableStateWithCoder:coder];
+}
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

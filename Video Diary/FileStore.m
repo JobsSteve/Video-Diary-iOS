@@ -47,7 +47,10 @@
 
 - (void)setVideoURL:(NSURL *)url forKey:(NSString *)key
 {
-    self.dictionary[key] = url;
+    if (key) {
+        self.dictionary[key] = url;
+    }
+    
 }
 
 - (NSURL *)videoURLForKey:(NSString *)key
