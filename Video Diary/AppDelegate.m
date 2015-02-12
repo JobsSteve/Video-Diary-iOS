@@ -58,11 +58,6 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     BOOL success = [[VideoStore sharedStore] saveChanges];
-    if (success) {
-        NSLog(@"Saved all of the Videos");
-    } else {
-        NSLog(@"Could not save any of the videos");
-    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

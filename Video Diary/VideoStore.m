@@ -84,7 +84,6 @@
     } else {
         order = [[self.privateVideos firstObject] orderingValue] + 1.0;
     }
-    NSLog(@"Adding after %lu videos, order = %.2f", (unsigned long)[self.privateVideos count], order);
     Video *video = [NSEntityDescription insertNewObjectForEntityForName:@"Video" inManagedObjectContext:self.context];
     video.orderingValue = order;
     [self.privateVideos insertObject:video atIndex:0];
@@ -112,9 +111,6 @@
 {
     NSError *error;
     BOOL successful = [self.context save:&error];
-    if (!successful) {
-        NSLog(@"Error saving: %@", [error localizedDescription]);
-    }
     return successful;
 }
 

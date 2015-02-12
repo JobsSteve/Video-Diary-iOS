@@ -196,10 +196,10 @@ static NSDateFormatter *dateFormatter;
         imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
     } else {
 //        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No video camera!"
-                                                       message:@"This device does not have a video camera"
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"No video camera!", @"Camera alert title")
+                                                       message:NSLocalizedString(@"This device does not have a video camera", @"Camera alert message")
                                                       delegate:nil
-                                             cancelButtonTitle:@"OK"
+                                             cancelButtonTitle:NSLocalizedString(@"OK", @"Camera alert cancel")
                                              otherButtonTitles: nil];
         [alert show];
 
@@ -273,12 +273,12 @@ static NSDateFormatter *dateFormatter;
 
 - (void)delete:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Delete"
-                                                   message:@"Are you surewant to delete this video?"
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Delete", @"Delete alert title")
+                                                   message:NSLocalizedString(@"Are you sure want to delete this video?", @"Delete alert message")
                                                   delegate:self
-                                         cancelButtonTitle:@"Cancel"
+                                         cancelButtonTitle:NSLocalizedString(@"Cancel", @"Delete alert cancel")
                                          otherButtonTitles: nil];
-    [alert addButtonWithTitle:@"Yes"];
+    [alert addButtonWithTitle:NSLocalizedString(@"Yes", @"Delete alert yes")];
     [alert show];
 
    
@@ -289,14 +289,12 @@ static NSDateFormatter *dateFormatter;
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        NSLog(@" you have clicked Cancel");
         return;
     } else if (buttonIndex == 1) {
         // If the user cancelled, then remoce the BNRItem from the store
         [[VideoStore sharedStore] removeVideo:self.video];
         
         [self.navigationController popViewControllerAnimated:YES];
-        NSLog(@" you have clicked Yes");
     }
 }
 
