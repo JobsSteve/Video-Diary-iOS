@@ -57,7 +57,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    BOOL success = [[VideoStore sharedStore] saveChanges];
+    [[VideoStore sharedStore] saveChanges];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
