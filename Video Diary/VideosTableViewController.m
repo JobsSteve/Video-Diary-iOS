@@ -46,10 +46,12 @@
         // Bar button item that will send addNewVideo: to VideosTableViewController
         UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewVideo:)];
         
+        
         // Set this bar button item as the right item in the navigationItem
         navItem.rightBarButtonItem = bbi;
         
-        navItem.leftBarButtonItem = self.editButtonItem;
+        
+//        navItem.leftBarButtonItem = self.editButtonItem;
         
         
         
@@ -80,20 +82,26 @@
     [self.tableView registerNib:nib forCellReuseIdentifier:@"VideoCellTableViewCell"];
     
     self.tableView.restorationIdentifier = @"VideosTableViewController";
-
+    
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    // Create bottom toolbar with bar button items
+    // Unhide bottom toolbar with bar button items
     self.navigationController.toolbarHidden = NO;
+    [self.navigationController.toolbar setBarStyle:UIBarStyleBlack];
+    [self.navigationController.toolbar setTintColor:[UIColor whiteColor]];
     UIBarButtonItem *flexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+
     UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(search)];
-    NSArray *buttonItems = [NSArray arrayWithObjects:flexibleItem, searchButton,nil];
-    [self.navigationController.toolbar setItems:buttonItems];
-  
+    [self setToolbarItems:[NSArray arrayWithObjects:flexibleItem, searchButton, nil]];
+    //    [self.navigationController.toolbar setItems:buttonItems];
+    //    [self.navigationController.toolbar setTintColor:[UIColor orangeColor]];
+    
     
     
     [self updateTableViewForDynamicTypeSize];
@@ -107,19 +115,19 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+    
     // Return the number of rows in the section.
     return [[[VideoStore sharedStore] allVideos] count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-//    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCell"];
+    //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    //    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCell"];
     
     // Get a new or recycled cell
     VideoCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VideoCellTableViewCell"];
-
+    
     
     
     // Configure the cell...
@@ -167,18 +175,18 @@
             
         }
     };
-
+    
     return cell;
 }
 
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 
 // Override to support editing the table view.
@@ -192,23 +200,23 @@
         
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+    }
 }
 
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 #pragma mark - Table view delegate
 
@@ -227,26 +235,26 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - IBAction methods
 
 
 - (IBAction)addNewVideo:(id)sender
 {
-    Video *newVideo = [[VideoStore sharedStore] createVideo];
+    
     
     DetailViewController *detailViewController = [[DetailViewController alloc] init];
     
-    // Give detail view controller a pointer to the video object in row
-    detailViewController.video = newVideo;
+//    // Give detail view controller a pointer to the video object in row
+//    detailViewController.video = newVideo;
     
     // Push it onto the top of the navigation controller's stack
     [self.navigationController pushViewController:detailViewController animated:YES];
@@ -316,7 +324,13 @@
 
 
 - (void)search {
-    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert!"
+                                                   message:@"This is an alert!"
+                                                  delegate:nil
+                                         cancelButtonTitle:@"OK"
+                                         otherButtonTitles: nil];
+    [alert show];
+
 }
 
 

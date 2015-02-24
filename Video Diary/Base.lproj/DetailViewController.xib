@@ -24,8 +24,8 @@
                     </constraints>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="ktT-fa-EYv"/>
-                        <barButtonItem systemItem="camera" id="h4Z-bj-ChU">
-                            <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem image="Video" id="h4Z-bj-ChU">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="takeVideo:" destination="-1" id="tjO-Jf-N3g"/>
                             </connections>
@@ -62,4 +62,7 @@
             </connections>
         </view>
     </objects>
+    <resources>
+        <image name="Video" width="24" height="24"/>
+    </resources>
 </document>

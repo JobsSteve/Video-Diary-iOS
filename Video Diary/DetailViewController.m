@@ -23,6 +23,7 @@
 @property (strong, nonatomic) MPMoviePlayerController *videoController;
 @property (strong, nonatomic) NSURL *videoURL;
 @property (strong, nonatomic) UIImage *tempImage;
+@property (strong, nonatomic) NSData *videoData;
 
 @end
 
@@ -45,19 +46,19 @@ static NSDateFormatter *dateFormatter;
     return self;
 }
 
-- (void)setVideo:(Video *)video
-{
-    _video = video;
-    
-    // Use NSDateFormatter to turn a date into a date string
-    if (!dateFormatter) {
-        dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateStyle = NSDateIntervalFormatterMediumStyle;
-        dateFormatter.timeStyle = NSDateFormatterShortStyle;
-    }
-    self.navigationItem.title = [dateFormatter stringFromDate:video.dateCreated];
-    
-}
+//- (void)setVideo:(Video *)video
+//{
+//    _video = video;
+//    
+//    // Use NSDateFormatter to turn a date into a date string
+//    if (!dateFormatter) {
+//        dateFormatter = [[NSDateFormatter alloc] init];
+//        dateFormatter.dateStyle = NSDateIntervalFormatterMediumStyle;
+//        dateFormatter.timeStyle = NSDateFormatterShortStyle;
+//    }
+//    self.navigationItem.title = [dateFormatter stringFromDate:video.dateCreated];
+//    
+//}
 
 #pragma mark - App lifecycle
 
@@ -65,8 +66,8 @@ static NSDateFormatter *dateFormatter;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     UIBarButtonItem *cancelVideo = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
-                                                                                target:self
-                                                                                action:@selector(delete:)];
+                                                                                 target:self
+                                                                                 action:@selector(delete:)];
     self.navigationItem.rightBarButtonItem = cancelVideo;
     
     self.videoController = [[MPMoviePlayerController alloc] init];
@@ -131,27 +132,38 @@ static NSDateFormatter *dateFormatter;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+    
+    self.navigationController.toolbarHidden = YES;
+    
+    [self.toolbar setBarStyle:UIBarStyleBlack];
+    
     self.commentTextField.delegate = self;
     
-    self.commentTextField.text = self.video.comment;
-    
-    NSString *fileKey = self.video.fileKey;
-    
-   // Get the NSString for the video NSURL from the image store
-    NSURL *URL = [[FileStore sharedStore] videoURLForKey:fileKey];
-    
-    self.videoURL = URL;
-
-    if (self.videoURL) {
+    if (self.video) {
+        self.commentTextField.text = self.video.comment;
+        NSString *fileKey = self.video.fileKey;
+        
+        // Get the NSString for the video NSURL from the image store
+        NSURL *URL = [[FileStore sharedStore] videoURLForKey:fileKey];
+        
+        self.videoURL = URL;
+        
+        
         [self.videoController setContentURL:self.videoURL];
         
         [self.videoController prepareToPlay];
+        
+        
+        // Get thumbnail image from self.videoController
+        
+        [self.videoController requestThumbnailImagesAtTimes:@[@1.0f] timeOption:MPMovieTimeOptionExact];
     }
     
-    // Get thumbnail image from self.videoController
     
-    [self.videoController requestThumbnailImagesAtTimes:@[@1.0f] timeOption:MPMovieTimeOptionExact];
+    
+    
+    
+    
     
     [self updateFonts];
     
@@ -164,9 +176,14 @@ static NSDateFormatter *dateFormatter;
     // Clear first responder
     [self.view endEditing:YES];
     
+    
+    
     // Save changes to video
     self.video.comment = self.commentTextField.text;
     self.video.thumbnail = self.tempImage;
+    
+    
+    
     
     // Only stop video playing if DetailViewController is popped off the stack (keeps playing if self.videoController goes fullscree
     NSArray *viewControllers = self.navigationController.viewControllers;
@@ -195,14 +212,14 @@ static NSDateFormatter *dateFormatter;
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
     } else {
-//        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        //        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"No video camera!", @"Camera alert title")
                                                        message:NSLocalizedString(@"This device does not have a video camera", @"Camera alert message")
                                                       delegate:nil
                                              cancelButtonTitle:NSLocalizedString(@"OK", @"Camera alert cancel")
                                              otherButtonTitles: nil];
         [alert show];
-
+        
         return;
     }
     
@@ -214,14 +231,17 @@ static NSDateFormatter *dateFormatter;
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    
+    self.video = [[VideoStore sharedStore] createVideo];
+    
     self.videoURL = info[UIImagePickerControllerMediaURL];
     
     // Find documents directory
-    NSData *videoData = [NSData dataWithContentsOfURL:self.videoURL];
-
+    self.videoData = [NSData dataWithContentsOfURL:self.videoURL];
+    
     NSString *tempPath = [[FileStore sharedStore] filePathForKey:self.video.fileKey];
     
-    [videoData writeToFile:tempPath atomically:NO];
+    [self.videoData writeToFile:tempPath atomically:NO];
     
     [[NSFileManager defaultManager] removeItemAtPath:[self.videoURL path] error:nil];
     
@@ -252,7 +272,7 @@ static NSDateFormatter *dateFormatter;
     }
 }
 
-#pragma mark - MPMoviePlayer Notification 
+#pragma mark - MPMoviePlayer Notification
 
 - (void)movieThumbnailLoadComplete:(NSNotification *)receive
 {
@@ -280,8 +300,8 @@ static NSDateFormatter *dateFormatter;
                                          otherButtonTitles: nil];
     [alert addButtonWithTitle:NSLocalizedString(@"Yes", @"Delete alert yes")];
     [alert show];
-
-   
+    
+    
 }
 
 #pragma mark - UIAlerView delegate

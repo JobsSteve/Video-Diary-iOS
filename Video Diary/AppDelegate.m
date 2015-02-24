@@ -39,7 +39,9 @@
         
         navController.navigationBar.tintColor = [UIColor orangeColor];
         [navController.navigationBar
-         setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor orangeColor]}];
+         setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]}];
+        navController.toolbarHidden = NO;
+        
         
         // Place navControllers view in the window hierachy
         self.window.rootViewController = navController;
@@ -78,12 +80,12 @@
 
 - (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder
 {
-    return YES;
+    return NO;
 }
 
 - (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
 {
-    return YES;
+    return NO;
 }
 
 - (UIViewController *)application:(UIApplication *)application viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder
