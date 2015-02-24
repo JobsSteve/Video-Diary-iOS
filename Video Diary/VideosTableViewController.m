@@ -19,6 +19,8 @@
 
 @property (strong, nonatomic) UIPopoverController *videoPopover;
 
+@property (strong, nonatomic) UIToolbar *toolBar;
+
 @end
 
 @implementation VideosTableViewController
@@ -49,10 +51,14 @@
         
         navItem.leftBarButtonItem = self.editButtonItem;
         
+        
+        
         // Register for dynamic type notification
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(updateTableViewForDynamicTypeSize)
                                                      name:UIContentSizeCategoryDidChangeNotification object:nil];
+        
+        
     }
     return self;
 }
@@ -80,6 +86,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    // Create bottom toolbar with bar button items
+    self.navigationController.toolbarHidden = NO;
+    UIBarButtonItem *flexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(search)];
+    NSArray *buttonItems = [NSArray arrayWithObjects:flexibleItem, searchButton,nil];
+    [self.navigationController.toolbar setItems:buttonItems];
+  
+    
     
     [self updateTableViewForDynamicTypeSize];
 }
@@ -299,6 +314,10 @@
     return indexPath;
 }
 
+
+- (void)search {
+    
+}
 
 
 - (void)dealloc
