@@ -14,12 +14,18 @@
 #import "VideoCellTableViewCell.h"
 #import "VideoViewController.h"
 #import "FileStore.h"
+#import "DatePickerController.h"
 
-@interface VideosTableViewController () <UIPopoverControllerDelegate, UIDataSourceModelAssociation>
+@interface VideosTableViewController () <UIPopoverControllerDelegate, UIDataSourceModelAssociation, DatePickerControllerDelegate>
 
 @property (strong, nonatomic) UIPopoverController *videoPopover;
-
 @property (strong, nonatomic) UIToolbar *toolBar;
+
+@property (nonatomic, strong) UIDatePicker *datePicker;
+@property (nonatomic, strong) UIBarButtonItem *doneButton;
+@property (nonatomic, strong) UIBarButtonItem *searchButton;
+
+@property (nonatomic, strong) NSMutableArray *barButtonItems;
 
 @end
 
@@ -97,8 +103,9 @@
     [self.navigationController.toolbar setTintColor:[UIColor whiteColor]];
     UIBarButtonItem *flexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 
-    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(search)];
-    [self setToolbarItems:[NSArray arrayWithObjects:flexibleItem, searchButton, nil]];
+    self.searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(search)];
+    self.barButtonItems = [[NSMutableArray alloc] initWithObjects:flexibleItem, self.searchButton, nil];
+    [self setToolbarItems:self.barButtonItems];
     //    [self.navigationController.toolbar setItems:buttonItems];
     //    [self.navigationController.toolbar setTintColor:[UIColor orangeColor]];
     
@@ -324,13 +331,96 @@
 
 
 - (void)search {
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert!"
-                                                   message:@"This is an alert!"
-                                                  delegate:nil
-                                         cancelButtonTitle:@"OK"
-                                         otherButtonTitles: nil];
-    [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert!"
+//                                                   message:@"This is an alert!"
+//                                                  delegate:nil
+//                                         cancelButtonTitle:@"OK"
+//                                         otherButtonTitles: nil];
+//    [alert show];
 
+    
+//    DatePickerController *dpc = [[DatePickerController alloc] init];
+//    dpc.delegate = self;
+//    [self presentViewController:dpc animated:YES completion:nil];
+    
+    //if date picker doesn't exists then create it
+    if(self.datePicker == nil){
+        self.datePicker = [[UIDatePicker alloc] init];
+        
+        //set the action method that will listen for changes to picker value
+//        [self.datePicker addTarget:self
+//                              action:@selector(datePickerDateChanged:)
+//                    forControlEvents:UIControlEventValueChanged];
+    }
+    
+    //find the current table view size
+    CGRect screenRect = [self.view frame];
+    
+    //find the date picker size
+    CGSize pickerSize = [self.datePicker sizeThatFits:CGSizeZero];
+    
+    //set the picker frame
+    CGRect pickerRect = CGRectMake(0.0,
+                                   screenRect.origin.y + screenRect.size.height - pickerSize.height - 100,
+                                   pickerSize.width,
+                                   pickerSize.height);
+    self.datePicker.frame = pickerRect;
+    self.datePicker.backgroundColor = [UIColor orangeColor];
+    
+    
+    //add the picker to the view
+    [self.view addSubview:self.datePicker];
+    
+    //create the navigation button if it doesn't exists
+    if(self.doneButton == nil){
+        self.doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                           style:UIBarButtonItemStylePlain
+                                                          target:self
+                                                          action:@selector(dateSelected:)];
+    }
+    //add the "Done" button to the right side of the nav controller toolbar
+    [self.barButtonItems replaceObjectAtIndex:1 withObject:self.doneButton];
+    [self setToolbarItems:[self.barButtonItems copy]];
+    
+    
+    
+}
+
+//method to call when the "Done" button is clicked
+- (void) dateSelected:(id)sender {
+    
+    //remove the "Done" button in the navigation bar
+    self.navigationItem.rightBarButtonItem = nil;
+    
+//    //find the current selected cell row in the table view
+//    NSIndexPath *indexPath = [self.ableView indexPathForSelectedRow];
+//    UITableViewCell *cell = [self.myTableView cellForRowAtIndexPath:indexPath];
+//    NSLog(@"Selected Section %d and Row %d", indexPath.section, indexPath.row);
+//    
+//    //set the cell value from the date picker value and format it properly
+//    switch (indexPath.row) {
+//        case 0:
+//            cell.detailTextLabel.text = [self.dateFormatter1 stringFromDate:myDatePicker.date];
+//            break;
+//        case 1:
+//            cell.detailTextLabel.text = [self.dateFormatter2 stringFromDate:myDatePicker.date];
+//            break;
+//        case 2:
+//            cell.detailTextLabel.text = [self.dateFormatter3 stringFromDate:myDatePicker.date];
+//            break;
+//        default:
+//            break;
+//    }
+    
+    //remove the date picker view form the super view
+    [self.datePicker removeFromSuperview];
+    
+    [self.barButtonItems replaceObjectAtIndex:1 withObject:self.searchButton];
+    [self setToolbarItems:[self.barButtonItems copy]];
+    
+//    //deselect the current table row
+//    [self.myTableView deselectRowAtIndexPath:indexPath animated:YES];
+    
 }
 
 
@@ -338,6 +428,8 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+
 
 
 
